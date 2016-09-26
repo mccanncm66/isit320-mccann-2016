@@ -5,3 +5,5 @@ This is modified
 Another test from home
 
 One more test from home
+
+A test from school
