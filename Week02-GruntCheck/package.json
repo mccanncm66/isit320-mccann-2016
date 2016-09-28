@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test" : "node jasmine-runner.js"
+    "test": "node jasmine-runner.js"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
@@ -21,6 +21,8 @@
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-jsbeautifier": "^0.2.13",
     "grunt-jscs": "^3.0.1",
+    "grunt-karma": "^2.0.0",
+    "jasmine-core": "^2.5.2",
     "jshint-stylish": "^2.2.1"
   }
 }
