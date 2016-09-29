@@ -1,23 +1,23 @@
 var person = {
-	firstName: "George",
-	lastName: "Washington",
-	fullName: function() {
-		return this.firstName + " " + this.lastName;
-	}
+    firstName: "George",
+    lastName: "Washington",
+    fullName: function() {
+        return this.firstName + " " + this.lastName;
+    }
 }
 
 var calculator = {
-	operator01: -1,
-	operator02: -1,
-	add: function() {
-		return this.operator01 + this.operator02;
-	},
-	subtract: function() {
-		return this.operator01 - this.operator02;
-	},
-	multiply: function() {
-			return this.operator01 * this.operator02;
-	}
+    operator01: -1,
+    operator02: -1,
+    add: function() {
+        return this.operator01 + this.operator02;
+    },
+    subtract: function() {
+        return this.operator01 - this.operator02;
+    },
+    multiply: function() {
+        return this.operator01 * this.operator02;
+    }
 }
 
 function divider(title) {
@@ -31,7 +31,7 @@ divider('Person');
 console.log(person.firstName);
 console.log(person.lastName);
 console.log(person.fullName());
-	
+
 
 calculator.operator01 = person.firstName.length;
 calculator.operator02 = person.lastName.length;
