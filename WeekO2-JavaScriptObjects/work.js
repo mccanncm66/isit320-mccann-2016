@@ -1,37 +1,40 @@
 var person = {
-    firstName: "George",
-    lastName: "Washington",
+    firstName: 'George',
+    lastName: 'Washington',
     fullName: function() {
-        return this.firstName + " " + this.lastName;
+        'use strict';
+        return this.firstName + ' ' + this.lastName;
     }
-}
+};
 
 var calculator = {
     operator01: -1,
     operator02: -1,
     add: function() {
+        'use strict';
         return this.operator01 + this.operator02;
     },
     subtract: function() {
+        'use strict';
         return this.operator01 - this.operator02;
     },
     multiply: function() {
+        'use strict';
         return this.operator01 * this.operator02;
     }
-}
+};
 
 function divider(title) {
-    console.log("====================================");
+    'use strict';
+    console.log('====================================');
     console.log(title);
-    console.log("====================================");
+    console.log('====================================');
 }
-
 
 divider('Person');
 console.log(person.firstName);
 console.log(person.lastName);
 console.log(person.fullName());
-
 
 calculator.operator01 = person.firstName.length;
 calculator.operator02 = person.lastName.length;
