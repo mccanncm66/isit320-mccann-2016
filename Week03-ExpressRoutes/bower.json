@@ -1,0 +1,24 @@
+{
+  "name": "week03-express-routes",
+  "description": "learn about routs",
+  "main": "",
+  "authors": [
+    "Charlie Calvert at school <foo@foobar.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "express",
+    "routes"
+  ],
+  "homepage": "https://github.com/mccanncm66/isit320-mccann-2016",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
