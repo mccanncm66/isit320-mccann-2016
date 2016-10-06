@@ -5,30 +5,42 @@ var docName = 'bigNames';
 var dbName = 'bc_data';
 
 var readIt = function() {
-	var prog = nano.db.use(dbName);
-	prog.get(docName, { revs_info: true }, function(err, body) {
-		if (!err)
-			console.log(body);
-	});
-}
+    'use strict';
+    var prog = nano.db.use(dbName);
+    prog.get(docName, {
+        revs_info: true
+    }, function(err, body) {
+        if (!err) {
+            console.log(body);
+        }
+    });
+};
 
 function insert() {
-	nano.db.create(dbName);
-	var prog = nano.db.use(dbName);
+    'use strict';
+    nano.db.create(dbName);
+    var prog = nano.db.use(dbName);
 
-	prog.insert({"doc":[
-		{ 'firstName': 'Suzie', 'lastName': 'Higgins'}, 
-		{ 'firstName': 'Harry', 'lastName': 'Potter'}, 
-		{ 'firstName': 'Jon', 'lastName': 'Doe'}
-		]},
-		docName, function(err, body) {
-	  if (!err)
-		console.log(body);
-		readIt();
-	});
+    prog.insert({
+            'doc': [{
+                'firstName': 'Suzie',
+                'lastName': 'Higgins'
+            }, {
+                'firstName': 'Harry',
+                'lastName': 'Potter'
+            }, {
+                'firstName': 'Jon',
+                'lastName': 'Doe'
+            }]
+        },
+        docName,
+        function(err, body) {
+            if (!err) {
+                console.log(body);
+            }
+            readIt();
+        });
 }
-
-
 
 insert();
 // readIt();
