@@ -1,0 +1,17 @@
+{
+  "name": "isit320-mccann-2016",
+  "homepage": "https://github.com/mccanncm66/isit320-mccann-2016",
+  "authors": [
+    "caleb from home desk <caleb@caleb.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

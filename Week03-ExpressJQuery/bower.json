@@ -1,0 +1,20 @@
+{
+  "name": "Week03-ExpressJQuery",
+  "description": "",
+  "main": "",
+  "authors": [
+    "caleb from home desk <caleb@caleb.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mccanncm66/isit320-mccann-2016",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}
