@@ -5,8 +5,27 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     'use strict';
     res.render('index', {
-        title: 'ExpressRoutes-McCann'
+        title: 'Express'
     });
+});
+
+router.get('/read', function(request, response) {
+    'use strict';
+    response.send([{
+        name: 'SarahLee'
+    }, {
+        name: 'Bob'
+    }]);
+});
+
+router.get('/add', function(request, response) {
+    'use strict';
+    console.log('add method called');
+    console.log('The parameters are: ' + request.query);
+    var addedTotal = parseInt(request.query.operatorA) + parseInt(request.query.operatorB);
+    response.send([{
+        total: addedTotal
+    }]);
 });
 
 module.exports = router;

@@ -1,16 +1,12 @@
 {
-  "name": "week03-express-routes",
-  "description": "learn about routs",
+  "name": "TestExpressRoutes",
+  "description": "",
   "main": "",
   "authors": [
-    "Charlie Calvert at school <foo@foobar.com>"
+    "caleb from home desk <caleb@caleb.com>"
   ],
   "license": "MIT",
-  "keywords": [
-    "express",
-    "routes"
-  ],
-  "homepage": "https://github.com/mccanncm66/isit320-mccann-2016",
+  "homepage": "",
   "ignore": [
     "**/.*",
     "node_modules",
