@@ -21,9 +21,9 @@ var calculator = {
 };
 
 calculator.multiply = function() {
-        'use strict';
-        return this.operator01 * this.operator02;
-    }
+    'use strict';
+    return this.operator01 * this.operator02;
+};
 
 function divider(title) {
     'use strict';
