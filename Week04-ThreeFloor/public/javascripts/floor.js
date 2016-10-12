@@ -1,15 +1,11 @@
 define([require], function() {
-
     'use strict';
 
     var THREE = null;
 
-function Floors(threeInit) {
-    THREE = threeInit;
-};
-
-
-    function Floors() {}
+    function Floors(threeInit) {
+        THREE = threeInit;
+    }
 
     function makeFloor() {
         // floor
@@ -48,8 +44,8 @@ function Floors(threeInit) {
         var names = ['images/checkerboard.jpg', 'images/FloorBorder256.png', 'images/WoodenPlanks.png', 'images/grass02.jpg', 'images/Grass03.png'];
         var repeats = [250, 100, 100, 175];
         var index = 0;
-        //var floorTexture = new THREE.ImageUtils.loadTexture('images/FloorBorder256.png');
-        var floorTexture = new THREE.ImageUtils.loadTexture(names[index]);
+        var loader = new THREE.TextureLoader();
+        var floorTexture = loader.load(names[index]);
         floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
         floorTexture.repeat.set(repeats[index], repeats[index]);
         var floorMaterial = new THREE.MeshBasicMaterial({

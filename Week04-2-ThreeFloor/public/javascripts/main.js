@@ -8,8 +8,7 @@ requirejs.config({
         "bootstrap": 'components/bootstrap/dist/js/bootstrap',
         "Three" : 'javascripts/three',
         "control" : 'javascripts/control',
-        "floor" : 'javascripts/floor'
-
+        "floor" : "javascripts/floor"
     },
     shim : {
         'Three' : {

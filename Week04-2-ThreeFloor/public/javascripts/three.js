@@ -606,7 +606,7 @@
 				default: throw new Error( 'index is out of range: ' + index );
 
 			}
-			
+
 			return this;
 
 		},
@@ -1374,7 +1374,7 @@
 				default: throw new Error( 'index is out of range: ' + index );
 
 			}
-			
+
 			return this;
 
 		},
@@ -2683,7 +2683,7 @@
 				default: throw new Error( 'index is out of range: ' + index );
 
 			}
-			
+
 			return this;
 
 		},
@@ -10538,7 +10538,7 @@
 
 		this.userData = {};
 
-		this.onBeforeRender = function(){}; 
+		this.onBeforeRender = function(){};
 		this.onAfterRender = function(){};
 
 	}
@@ -40808,7 +40808,7 @@
 
 		function ( t ) {
 
-			var b2 = exports.ShapeUtils.b2;		
+			var b2 = exports.ShapeUtils.b2;
 
 			return new Vector3(
 				b2( t, this.v0.x, this.v1.x, this.v2.x ),

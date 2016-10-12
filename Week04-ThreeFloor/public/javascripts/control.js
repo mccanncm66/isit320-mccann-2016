@@ -1,6 +1,6 @@
 /* globals define: true, THREE:true */
 
-define(['floors'], function(Floors) {
+define(['floor'], function(Floor) {
 
     var scene = null;
     var camera = null;
@@ -28,8 +28,8 @@ define(['floors'], function(Floors) {
         var width = window.innerWidth / window.innerHeight;
         camera = new THREE.PerspectiveCamera(75, width, 0.1, 1000);
 
-        var floors = new Floors(THREE);
-        floors.drawFloor(scene);
+        //var floor = new Floor();
+        //floor.drawFloor(scene);
         addLights();
 
         renderer = new THREE.WebGLRenderer({
@@ -38,6 +38,8 @@ define(['floors'], function(Floors) {
         renderer.setSize(window.innerWidth / 2, window.innerHeight / 2);
         document.body.appendChild(renderer.domElement);
         cube = addCube(scene, camera, false, 1, 1);
+        var floor = new Floor();
+        floor.drawFloor(scene);
         camera.position.z = 23;
         camera.position.x = 2;
         camera.position.y = 0;
