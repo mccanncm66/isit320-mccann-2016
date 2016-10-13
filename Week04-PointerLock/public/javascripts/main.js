@@ -8,12 +8,16 @@ requirejs.config({
         "bootstrap": 'components/bootstrap/dist/js/bootstrap',
         "Three" : 'javascripts/three',
         "control" : 'javascripts/control',
-        "floor" : 'javascripts/floor'
+        "floor" : 'javascripts/floor',
+        "PointerLockControls": 'javascripts/pointer-lock-controls'
 
     },
     shim : {
         'Three' : {
             exports: 'THREE'
+        },
+        'PointerLockControls': {
+            exports: 'THREE.PointerLockControls'
         }
     }
 });

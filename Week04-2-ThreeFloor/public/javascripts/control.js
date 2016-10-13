@@ -14,6 +14,10 @@ define(["floor"], function(Floor) {
         scene = new THREE.Scene();
         var width = window.innerWidth / window.innerHeight;
         camera = new THREE.PerspectiveCamera(75, width, 0.1, 1000);
+
+        var floor = new Floor();
+        floor.drawFloor(scene);
+
         renderer = new THREE.WebGLRenderer({
             antialias : true
         });
@@ -43,8 +47,7 @@ define(["floor"], function(Floor) {
         cube.position.set(x, 0, y);
         scene.add(cube);
 
-        var floor = new Floor();
-        floor.drawFloor(scene);
+
 
         return cube;
     }
