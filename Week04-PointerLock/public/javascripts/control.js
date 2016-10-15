@@ -1,42 +1,45 @@
 /* globals define: true, THREE:true */
 
-define(['floor'], function(Floor) {
+define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, PointerLockControls, PointerLockSetup) {
 
     var scene = null;
     var camera = null;
     var renderer = null;
     var cube = null;
     var THREE = null;
+    var cubes = [];
+    var size = 20;
 
     function Control(threeInit) {
         THREE = threeInit;
         console.log("Control called");
         scene = new THREE.Scene();
-        var width = window.innerWidth / window.innerHeight;
+        init();
+
+        /*var width = window.innerWidth / window.innerHeight;
         camera = new THREE.PerspectiveCamera(75, width, 0.1, 1000);
 
         var floor = new Floor(THREE);
         floor.drawFloor(scene);
 
-        addLights();
+        addLights();*/
 
-        renderer = new THREE.WebGLRenderer({
+/*        renderer = new THREE.WebGLRenderer({
             antialias : true
         });
 
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
-        cube = addCubes(scene, camera, false);
+        //cube = addCubes(scene, camera, false);*/
         camera.position.z = 23;
         camera.position.x = 2;
         camera.position.y = 0;
 
-        document.addEventListener('keydown', onKeyDown, false);
-        document.addEventListener('keyup', onKeyUp, false);
+        //document.addEventListener('keydown', onKeyDown, false);
+        //document.addEventListener('keyup', onKeyUp, false);
 
-        window.addEventListener('resize', onWindowResize, false);
-
-        render();
+        //window.addEventListener('resize', onWindowResize, false);
+        animate();
     }
 
     function onWindowResize() {
@@ -45,7 +48,7 @@ define(['floor'], function(Floor) {
         renderer.setSize(window.innerWidth, window.innerHeight);
     }
 
-    function render() {
+/*    function render() {
         requestAnimationFrame(render);
         //cube.rotation.x += 0.01;
         //cube.rotation.y += 0.01;
@@ -63,7 +66,7 @@ define(['floor'], function(Floor) {
         camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
 
         renderer.render(scene, camera);
-    }
+    }*/
 
 /*    function addCube(scene, camera, wireFrame, x, y) {
         var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -97,13 +100,13 @@ define(['floor'], function(Floor) {
         moveRight : false
     };
 
-    var cameraPosition = {
+/*    var cameraPosition = {
         x : 2,
         y : 0,
         z : 2
-    }
+    };*/
 
-    var onKeyDown = function(event) {
+    /*var onKeyDown = function(event) {
 
         switch (event.keyCode) {
 
@@ -127,11 +130,11 @@ define(['floor'], function(Floor) {
                 keyMove.moveRight = true;
                 break;
         }
-    };
+    };*/
 
 
 
-    var onKeyUp = function(event) {
+    /*var onKeyUp = function(event) {
 
         switch (event.keyCode) {
 
@@ -155,11 +158,11 @@ define(['floor'], function(Floor) {
                 keyMove.moveRight = false;
                 break;
         }
-    };
+    };*/
 
 
     function addCube(scene, camera, wireFrame, x, y) {
-        var geometry = new THREE.BoxGeometry(1, 1, 1);
+        var geometry = new THREE.BoxGeometry(size, size, size);
         /*var material = new THREE.MeshNormalMaterial({
          color : 0x00ffff,
          wireframe : wireFrame
@@ -172,10 +175,27 @@ define(['floor'], function(Floor) {
         var cube = new THREE.Mesh(geometry, material);
         cube.position.set(x, 0, y);
         scene.add(cube);
-
+        cubes.push(cube);
         addSphere(scene, camera, wireFrame, 2, -20);
 
         return cube;
+    }
+
+    function collisionDetection(position) {
+        // Collision detection
+        raycaster.ray.origin.copy(position);
+
+        var dir = controls.getDirection(new THREE.Vector3(0, 0, 0)).clone();
+        raycaster.ray.direction.copy(dir);
+
+        var intersections = raycaster.intersectObjects(cubes);
+
+        // If we hit something (a wall) then stop moving in
+        // that direction
+        if (intersections.length > 0 && intersections[0].distance <= 215) {
+            console.log(intersections.length);
+            controls.isOnObject(true);
+        }
     }
 
     function addLights() {
@@ -200,6 +220,66 @@ define(['floor'], function(Floor) {
         scene.add(sphere);
 
         return sphere;
+    }
+
+    function init() {
+
+        var screenWidth = window.innerWidth / window.innerHeight;
+        camera = new THREE.PerspectiveCamera(75, screenWidth, 1, 1000);
+
+        scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0xffffff, 0, 750);
+
+        addCubes(scene, camera, false);
+
+        doPointerLock();
+
+        addLights();
+
+        var floor = new Floor(THREE);
+        floor.drawFloor(scene);
+
+        raycaster = new THREE.Raycaster(new THREE.Vector3(),
+            new THREE.Vector3(0, -1, 0), 0, 10);
+
+        renderer = new THREE.WebGLRenderer({ antialias : true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        window.addEventListener('resize', onWindowResize, false);
+    }
+
+    function doPointerLock() {
+        controls = new PointerLockControls(camera, THREE);
+        var yawObject = controls.getObject();
+        scene.add(yawObject);
+
+        yawObject.position.x = size;
+        yawObject.position.z = size;
+
+        var ps = new PointerLockSetup(controls);
+    }
+
+    function animate() {
+
+        requestAnimationFrame(animate);
+
+        var xAxis = new THREE.Vector3(1, 0, 0);
+
+        controls.isOnObject(false);
+
+        var controlObject = controls.getObject();
+        var position = controlObject.position;
+
+        // drawText(controlObject, position);
+
+        collisionDetection(position);
+
+        // Move the camera
+        controls.update();
+
+        renderer.render(scene, camera);
     }
 
     return Control;

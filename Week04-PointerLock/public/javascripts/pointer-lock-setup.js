@@ -1,12 +1,10 @@
-/**
- * Created by bcuser on 10/12/16.
- */
 define(['PointerLockControls'], function(pointerLock) {
 
     'use strict';
 
     var element;
-    var blocker, instructions;
+    var blocker;
+    var instructions;
 
     function PointerLockSetup(controls) {
 

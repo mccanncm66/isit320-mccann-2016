@@ -9,16 +9,17 @@ requirejs.config({
         "Three" : 'javascripts/three',
         "control" : 'javascripts/control',
         "floor" : 'javascripts/floor',
-        "PointerLockControls": 'javascripts/pointer-lock-controls'
+        "PointerLockControls": 'javascripts/pointer-lock-controls',
+        "PointerLockSetup": 'javascripts/pointer-lock-setup'
 
     },
     shim : {
         'Three' : {
             exports: 'THREE'
-        },
-        'PointerLockControls': {
-            exports: 'THREE.PointerLockControls'
         }
+/*        'PointerLockControls': {
+            exports: 'THREE.PointerLockControls'
+        }*/
     }
 });
 
