@@ -1,7 +1,7 @@
 /* globals define: true, THREE:true */
 
 define(['floor'], function(Floor) {
-
+    'use strict';
     var scene = null;
     var camera = null;
     var renderer = null;
@@ -10,7 +10,7 @@ define(['floor'], function(Floor) {
 
     function Control(threeInit) {
         THREE = threeInit;
-        console.log("Control called");
+        console.log('Control called');
         scene = new THREE.Scene();
         var width = window.innerWidth / window.innerHeight;
         camera = new THREE.PerspectiveCamera(75, width, 0.1, 1000);
@@ -21,7 +21,7 @@ define(['floor'], function(Floor) {
         addLights();
 
         renderer = new THREE.WebGLRenderer({
-            antialias : true
+            antialias: true
         });
 
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -51,13 +51,13 @@ define(['floor'], function(Floor) {
         //cube.rotation.y += 0.01;
 
         if (keyMove.moveLeft) {
-            cameraPosition.x -= .31;
+            cameraPosition.x -= 0.31;
         } else if (keyMove.moveRight) {
-            cameraPosition.x += .31;
+            cameraPosition.x += 0.31;
         } else if (keyMove.moveForward) {
-            cameraPosition.z -= .31;
+            cameraPosition.z -= 0.31;
         } else if (keyMove.moveBackward) {
-            cameraPosition.z += .31;
+            cameraPosition.z += 0.31;
         }
 
         camera.position.set(cameraPosition.x, cameraPosition.y, cameraPosition.z);
@@ -65,43 +65,43 @@ define(['floor'], function(Floor) {
         renderer.render(scene, camera);
     }
 
-/*    function addCube(scene, camera, wireFrame, x, y) {
-        var geometry = new THREE.BoxGeometry(1, 1, 1);
-        var material = new THREE.MeshNormalMaterial({
-            color : 0x00ffff,
-            wireframe : wireFrame
-        });
-        var cube = new THREE.Mesh(geometry, material);
-        cube.position.set(x, 0, y);
-        scene.add(cube);
+    /*    function addCube(scene, camera, wireFrame, x, y) {
+            var geometry = new THREE.BoxGeometry(1, 1, 1);
+            var material = new THREE.MeshNormalMaterial({
+                color : 0x00ffff,
+                wireframe : wireFrame
+            });
+            var cube = new THREE.Mesh(geometry, material);
+            cube.position.set(x, 0, y);
+            scene.add(cube);
 
-        return cube;
-    }*/
+            return cube;
+        }*/
 
     function addCubes(scene, camera, wireFrame) {
         var space1 = -20;
 
         for (var i = 0; i < 15; i++) {
-            addCube(scene,camera, wireFrame, 3, space1);
-            addCube(scene,camera, wireFrame, 1, space1);
+            addCube(scene, camera, wireFrame, 3, space1);
+            addCube(scene, camera, wireFrame, 1, space1);
             space1 += 1;
         }
-/*        addCube(scene, camera, wireFrame, -1, -20);
-        addCube(scene, camera, wireFrame, 1, -20);*/
+        /*        addCube(scene, camera, wireFrame, -1, -20);
+                addCube(scene, camera, wireFrame, 1, -20);*/
     }
 
     var keyMove = {
-        moveForward : false,
-        moveBackward : false,
-        moveLeft : false,
-        moveRight : false
+        moveForward: false,
+        moveBackward: false,
+        moveLeft: false,
+        moveRight: false
     };
 
     var cameraPosition = {
-        x : 2,
-        y : 0,
-        z : 2
-    }
+        x: 2,
+        y: 0,
+        z: 2
+    };
 
     var onKeyDown = function(event) {
 
@@ -129,8 +129,6 @@ define(['floor'], function(Floor) {
         }
     };
 
-
-
     var onKeyUp = function(event) {
 
         switch (event.keyCode) {
@@ -157,7 +155,6 @@ define(['floor'], function(Floor) {
         }
     };
 
-
     function addCube(scene, camera, wireFrame, x, y) {
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         /*var material = new THREE.MeshNormalMaterial({
@@ -166,7 +163,7 @@ define(['floor'], function(Floor) {
          });*/
 
         var material = new THREE.MeshLambertMaterial({
-            map : THREE.ImageUtils.loadTexture('images/crate.jpg')
+            map: THREE.ImageUtils.loadTexture('images/crate.jpg')
         });
 
         var cube = new THREE.Mesh(geometry, material);
@@ -188,7 +185,7 @@ define(['floor'], function(Floor) {
     }
 
     function addSphere(sne, camera, wireFrame, x, y) {
-        var geometry = new THREE.SphereGeometry(.5, 25, 25);
+        var geometry = new THREE.SphereGeometry(0.5, 25, 25);
         var material = new THREE.MeshNormalMaterial({
             color: 0x00ffff,
             wireframe: wireFrame
