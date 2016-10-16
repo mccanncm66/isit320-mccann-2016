@@ -1,18 +1,20 @@
 /* globals define: true, THREE:true */
 
 define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, PointerLockControls, PointerLockSetup) {
-
+    'use strict';
     var scene = null;
     var camera = null;
     var renderer = null;
     var cube = null;
     var THREE = null;
+    var controls = null;
+    var raycaster = null;
     var cubes = [];
     var size = 20;
 
     function Control(threeInit) {
         THREE = threeInit;
-        console.log("Control called");
+        console.log('Control called');
         init();
         animate();
     }
@@ -27,17 +29,17 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         var space1 = -20;
 
         for (var i = 0; i < 15; i++) {
-            addCube(scene,camera, wireFrame, 40, space1);
-            addCube(scene,camera, wireFrame, 0, space1);
+            addCube(scene, camera, wireFrame, 40, space1);
+            addCube(scene, camera, wireFrame, 0, space1);
             space1 += 20;
         }
     }
 
     var keyMove = {
-        moveForward : false,
-        moveBackward : false,
-        moveLeft : false,
-        moveRight : false
+        moveForward: false,
+        moveBackward: false,
+        moveLeft: false,
+        moveRight: false
     };
 
     function addCube(scene, camera, wireFrame, x, y) {
@@ -45,7 +47,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         var loader = new THREE.TextureLoader();
         var crateTexture = loader.load('images/crate.jpg');
         var material = new THREE.MeshLambertMaterial({
-            map : crateTexture
+            map: crateTexture
         });
 
         var cube = new THREE.Mesh(geometry, material);
@@ -102,7 +104,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
 
         var screenWidth = window.innerWidth / window.innerHeight;
         camera = new THREE.PerspectiveCamera(75, screenWidth, 1, 1000);
-        camera.position.z = 23;
+        camera.position.z = 200;
         camera.position.x = 2;
         camera.position.y = -6;
 
@@ -121,7 +123,9 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         raycaster = new THREE.Raycaster(new THREE.Vector3(),
             new THREE.Vector3(0, -1, 0), 0, 10);
 
-        renderer = new THREE.WebGLRenderer({ antialias : true });
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
 
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
@@ -162,7 +166,9 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     }
 
     function drawText(controlObject, position) {
-        $('#cameraX').html(position.x)
+        $('#cameraX').html(position.x);
+        $('#cameraY').html(position.y);
+        $('#cameraZ').html(position.z);
     }
 
     return Control;

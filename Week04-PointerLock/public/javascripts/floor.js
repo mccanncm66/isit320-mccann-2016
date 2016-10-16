@@ -7,7 +7,6 @@ define([require], function() {
         THREE = threeInit;
     }
 
-
     function makeFloor() {
         // floor
 
