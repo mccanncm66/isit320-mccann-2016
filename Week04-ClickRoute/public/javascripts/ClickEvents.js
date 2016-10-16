@@ -1,33 +1,34 @@
-define(["jquery"], function(jquery) {'use strict';
+define(['jquery'], function(jquery) {
+    'use strict';
 
     var elf = {};
     elf.run = {};
 
-    elf.ClickEvents = ( function() {
-            var listItem = $(".listItem");
-            var intro = $("#intro");
+    elf.ClickEvents = (function() {
+        var listItem = $('.listItem');
+        var intro = $('#intro');
 
-            function ClickEvents() {
-                $(intro).html("ClickEvents is loaded. Click the three items seen below.");
-                $(intro).addClass('blue');
-                $(listItem).click(listClick);                
-            }
+        function ClickEvents() {
+            $(intro).html('ClickEvents is loaded. Click the three items seen below.');
+            $(intro).addClass('blue');
+            $(listItem).click(listClick);
+        }
 
-            var listClick = function(event) {
-                var clickText = event.target.innerText;
-                var prompt = "You clicked: ";
-                $(intro).html(prompt + clickText);
-                $.getJSON('/' + clickText, function(result) {
-                    console.log(result);
-                    $('#result').html('Result: ' + result.result);
-                    $('#route').html('Route: ' + result.route);
-                    $('#message').html('Message: ' + result.message);
-                })
-            };
+        var listClick = function(event) {
+            var clickText = event.target.innerText;
+            var prompt = 'You clicked: ';
+            $(intro).html(prompt + clickText);
+            $.getJSON('/' + clickText, function(result) {
+                console.log(result);
+                $('#result').html('Result: ' + result.result);
+                $('#route').html('Route: ' + result.route);
+                $('#message').html('Message: ' + result.message);
+            });
+        };
 
-            return ClickEvents;
+        return ClickEvents;
 
-        }());
+    }());
 
     return elf.ClickEvents;
 
