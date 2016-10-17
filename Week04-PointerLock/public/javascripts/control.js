@@ -33,7 +33,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
             addCube(scene, camera, wireFrame, 0, space1);
             space1 += 20;
         }
-        addSphere(scene, camera, wireFrame, 23, size*-6);
+        addSphere(scene, camera, wireFrame, 23, size * -6);
     }
 
     var keyMove = {
@@ -52,30 +52,30 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         });
 
         var cube = new THREE.Mesh(geometry, material);
-        cube.position.set(x, size/2, y);
+        cube.position.set(x, size / 2, y);
         scene.add(cube);
         cubes.push(cube);
         /*addSphere(scene, camera, wireFrame, 23, -20);*/
 
         return cube;
     }
-/*
-    function collisionDetection(position) {
-        // Collision detection
-        raycaster.ray.origin.copy(position);
+    /*
+        function collisionDetection(position) {
+            // Collision detection
+            raycaster.ray.origin.copy(position);
 
-        var dir = controls.getDirection(new THREE.Vector3(0, 0, 0)).clone();
-        raycaster.ray.direction.copy(dir);
+            var dir = controls.getDirection(new THREE.Vector3(0, 0, 0)).clone();
+            raycaster.ray.direction.copy(dir);
 
-        var intersections = raycaster.intersectObjects(cubes);
+            var intersections = raycaster.intersectObjects(cubes);
 
-        // If we hit something (a wall) then stop moving in
-        // that direction
-        if (intersections.length > 0 && intersections[0].distance <= 215) {
-            console.log(intersections.length);
-            controls.isOnObject(true);
-        }
-    }*/
+            // If we hit something (a wall) then stop moving in
+            // that direction
+            if (intersections.length > 0 && intersections[0].distance <= 215) {
+                console.log(intersections.length);
+                controls.isOnObject(true);
+            }
+        }*/
 
     var collisionDetection = function(controls, cubes) {
 
@@ -87,14 +87,14 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
 
         var rays = [
             //   Time    Degrees      words
-            new THREE.Vector3(0, 0, 1),  // 0 12:00,   0 degrees,  deep
-            new THREE.Vector3(1, 0, 1),  // 1  1:30,  45 degrees,  right deep
-            new THREE.Vector3(1, 0, 0),  // 2  3:00,  90 degress,  right
+            new THREE.Vector3(0, 0, 1), // 0 12:00,   0 degrees,  deep
+            new THREE.Vector3(1, 0, 1), // 1  1:30,  45 degrees,  right deep
+            new THREE.Vector3(1, 0, 0), // 2  3:00,  90 degress,  right
             new THREE.Vector3(1, 0, -1), // 3  4:30, 135 degrees,  right near
             new THREE.Vector3(0, 0, -1), // 4  6:00  180 degress,  near
-            new THREE.Vector3(-1, 0, -1),// 5  7:30  225 degrees,  left near
+            new THREE.Vector3(-1, 0, -1), // 5  7:30  225 degrees,  left near
             new THREE.Vector3(-1, 0, 0), // 6  9:00  270 degrees,  left
-            new THREE.Vector3(-1, 0, 1)  // 7 11:30  315 degrees,  left deep
+            new THREE.Vector3(-1, 0, 1) // 7 11:30  315 degrees,  left deep
         ];
 
         var position = controls.getObject().position;
@@ -140,7 +140,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
 
         var sphere = new THREE.Mesh(geometry, material);
         sphere.overdraw = true;
-        sphere.position.set(x, size/2, z);
+        sphere.position.set(x, size / 2, z);
         scene.add(sphere);
 
         return sphere;
@@ -150,9 +150,6 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
 
         var screenWidth = window.innerWidth / window.innerHeight;
         camera = new THREE.PerspectiveCamera(75, screenWidth, 1, 1000);
-        camera.position.z = 200;
-        camera.position.x = 2;
-        camera.position.y = -6;
 
         scene = new THREE.Scene();
         scene.fog = new THREE.Fog(0xffffff, 0, 750);
@@ -169,7 +166,9 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         raycaster = new THREE.Raycaster(new THREE.Vector3(),
             new THREE.Vector3(0, -1, 0), 0, 10);
 
-        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
 
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
@@ -199,7 +198,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         var controlObject = controls.getObject();
         var position = controlObject.position;
 
-        drawText(controlObject, position);
+        drawText(position);
 
         collisionDetection(controls, cubes);
 
@@ -209,7 +208,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         renderer.render(scene, camera);
     }
 
-    function drawText(controlObject, position) {
+    function drawText(position) {
         $('#cameraX').html(position.x);
         $('#cameraY').html(position.y);
         $('#cameraZ').html(position.z);
