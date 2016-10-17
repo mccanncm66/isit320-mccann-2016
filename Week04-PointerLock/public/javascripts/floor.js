@@ -54,7 +54,7 @@ define([require], function() {
         });
         var floorGeometry = new THREE.PlaneGeometry(2000, 2000, 10, 10);
         var floor = new THREE.Mesh(floorGeometry, floorMaterial);
-        floor.position.y = -9;
+        floor.position.y = -1;
         floor.rotation.x = Math.PI / 2;
         scene.add(floor);
     };
