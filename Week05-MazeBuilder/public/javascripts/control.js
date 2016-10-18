@@ -26,14 +26,26 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     }
 
     function addCubes(scene, camera, wireFrame) {
+        var horizontalLine = -20;
+        var verticalLine = 0;
         $.getJSON('grid000.json', function(grid) {
             for (var i = 0; i < grid.length; i++) {
-                console.log(grid[i]);
+                //console.log(grid[i]);
+                for(var j = 0; j < grid[i].length; j++) {
+                    if(grid[i][j] === 1) {
+                        addCube(scene, camera, wireFrame, horizontalLine, verticalLine);
+                    }
+                    horizontalLine += 20;
+                    //console.log(grid[i][j]);
+                }
+                horizontalLine = -20;
+                verticalLine += 20;
                 //addCube(scene, camera, wireFrame, 0, -(i*size));
             }
+
         });
 
-        var space1 = -20;
+
 
 
         addSphere(scene, camera, wireFrame, 23, size * -6);
@@ -46,7 +58,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         moveRight: false
     };
 
-    function addCube(scene, camera, wireFrame, x, y) {
+    function addCube(scene, camera, wireFrame, x, z) {
         var geometry = new THREE.BoxGeometry(size, size, size);
         var loader = new THREE.TextureLoader();
         var crateTexture = loader.load('images/crate.jpg');
@@ -55,7 +67,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         });
 
         var cube = new THREE.Mesh(geometry, material);
-        cube.position.set(x, size / 2, y);
+        cube.position.set(x, size / 2, z);
         scene.add(cube);
         cubes.push(cube);
         /*addSphere(scene, camera, wireFrame, 23, -20);*/
