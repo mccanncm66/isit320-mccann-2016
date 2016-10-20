@@ -6,6 +6,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     var camera = null;
     var renderer = null;
     var cube = null;
+    var crateTexture;
+    var alternateCrateTexture;
     var THREE = null;
     var controls = null;
     var raycaster = null;
@@ -15,8 +17,62 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     function Control(threeInit) {
         THREE = threeInit;
         console.log('Control called');
+        var loader = new THREE.TextureLoader();
+        crateTexture = loader.load('images/crate.jpg');
+        alternateCrateTexture = loader.load('images/crate02.jpg');
         init();
         animate();
+    }
+
+    function init() {
+
+        var screenWidth = window.innerWidth / window.innerHeight;
+        camera = new THREE.PerspectiveCamera(75, screenWidth, 1, 1000);
+
+        scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0xffffff, 0, 750);
+
+        addCubes(scene, camera, false);
+
+        doPointerLock();
+
+        addLights();
+
+        var floor = new Floor(THREE);
+        floor.drawFloor(scene);
+
+        raycaster = new THREE.Raycaster(new THREE.Vector3(),
+            new THREE.Vector3(0, -1, 0), 0, 10);
+
+        renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        window.addEventListener('resize', onWindowResize, false);
+    }
+
+    function animate() {
+
+        requestAnimationFrame(animate);
+
+        var xAxis = new THREE.Vector3(1, 0, 0);
+
+        controls.isOnObject(false);
+
+        var controlObject = controls.getObject();
+        var position = controlObject.position;
+
+        drawText(position);
+
+        collisionDetection(controls, cubes);
+
+        // Move the camera
+        controls.update();
+
+        renderer.render(scene, camera);
     }
 
     function onWindowResize() {
@@ -26,55 +82,56 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     }
 
     function addCubes(scene, camera, wireFrame) {
-        var horizontalLine = -20;
-        var verticalLine = 0;
+        var horizontalLine = 40;
+        var verticalLine = 60;
+        var crateSelector;
         $.getJSON('grid000.json', function(grid) {
             for (var i = 0; i < grid.length; i++) {
                 //console.log(grid[i]);
-                for(var j = 0; j < grid[i].length; j++) {
-                    if(grid[i][j] === 1) {
-                        addCube(scene, camera, wireFrame, horizontalLine, verticalLine);
+                for (var j = 0; j < grid[i].length; j++) {
+                    if (grid[i][j] === 1) {
+                        if (j % 5 !== 0 && i % 5 !== 0) {
+                            crateSelector = true;
+                        }
+                        else {
+                            crateSelector = false;
+                        }
+                        addCube(scene, camera, wireFrame, horizontalLine, verticalLine, crateSelector);
                     }
                     horizontalLine += 20;
                     //console.log(grid[i][j]);
                 }
-                horizontalLine = -20;
+                horizontalLine = 40;
                 verticalLine += 20;
-                //addCube(scene, camera, wireFrame, 0, -(i*size));
             }
-
         });
-
-
-
 
         addSphere(scene, camera, wireFrame, 23, size * -6);
     }
 
-    var keyMove = {
-        moveForward: false,
-        moveBackward: false,
-        moveLeft: false,
-        moveRight: false
-    };
 
-    function addCube(scene, camera, wireFrame, x, z) {
+    function addCube(scene, camera, wireFrame, x, z, crateType) {
         var geometry = new THREE.BoxGeometry(size, size, size);
-        var loader = new THREE.TextureLoader();
-        var crateTexture = loader.load('images/crate.jpg');
-        var material = new THREE.MeshLambertMaterial({
-            map: crateTexture
-        });
+        var material;
+
+        if (crateType) {
+            material = new THREE.MeshLambertMaterial({
+                map: crateTexture
+            });
+        }
+        else{
+            material = new THREE.MeshLambertMaterial({
+                map: alternateCrateTexture
+            });
+        }
 
         var cube = new THREE.Mesh(geometry, material);
         cube.position.set(x, size / 2, z);
         scene.add(cube);
         cubes.push(cube);
-        /*addSphere(scene, camera, wireFrame, 23, -20);*/
 
         return cube;
     }
-
 
     var collisionDetection = function(controls, cubes) {
 
@@ -145,36 +202,6 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         return sphere;
     }
 
-    function init() {
-
-        var screenWidth = window.innerWidth / window.innerHeight;
-        camera = new THREE.PerspectiveCamera(75, screenWidth, 1, 1000);
-
-        scene = new THREE.Scene();
-        scene.fog = new THREE.Fog(0xffffff, 0, 750);
-
-        addCubes(scene, camera, false);
-
-        doPointerLock();
-
-        addLights();
-
-        var floor = new Floor(THREE);
-        floor.drawFloor(scene);
-
-        raycaster = new THREE.Raycaster(new THREE.Vector3(),
-            new THREE.Vector3(0, -1, 0), 0, 10);
-
-        renderer = new THREE.WebGLRenderer({
-            antialias: true
-        });
-
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        window.addEventListener('resize', onWindowResize, false);
-    }
-
     function doPointerLock() {
         controls = new PointerLockControls(camera, THREE);
         var yawObject = controls.getObject();
@@ -184,27 +211,6 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         yawObject.position.z = size;
 
         var ps = new PointerLockSetup(controls);
-    }
-
-    function animate() {
-
-        requestAnimationFrame(animate);
-
-        var xAxis = new THREE.Vector3(1, 0, 0);
-
-        controls.isOnObject(false);
-
-        var controlObject = controls.getObject();
-        var position = controlObject.position;
-
-        drawText(position);
-
-        collisionDetection(controls, cubes);
-
-        // Move the camera
-        controls.update();
-
-        renderer.render(scene, camera);
     }
 
     function drawText(position) {

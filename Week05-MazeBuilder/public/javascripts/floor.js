@@ -43,7 +43,7 @@ define([require], function() {
         // FLOOR
         var names = ['images/checkerboard.jpg', 'images/FloorBorder256.png', 'images/WoodenPlanks.png', 'images/grass02.jpg', 'images/Grass03.png'];
         var repeats = [250, 100, 100, 175];
-        var index = 0;
+        var index = 3;
         var loader = new THREE.TextureLoader();
         var floorTexture = loader.load(names[index]);
         floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
