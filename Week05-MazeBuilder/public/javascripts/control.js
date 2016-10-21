@@ -82,8 +82,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     }
 
     function addCubes(scene, camera, wireFrame) {
-        var horizontalLine = 40;
-        var verticalLine = 60;
+        var horizontalLine = 0;
+        var verticalLine = 20;
         var crateSelector;
         $.getJSON('grid000.json', function(grid) {
             for (var i = 0; i < grid.length; i++) {
@@ -101,7 +101,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
                     horizontalLine += 20;
                     //console.log(grid[i][j]);
                 }
-                horizontalLine = 40;
+                horizontalLine = 0;
                 verticalLine += 20;
             }
         });
@@ -207,8 +207,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         var yawObject = controls.getObject();
         scene.add(yawObject);
 
-        yawObject.position.x = size;
-        yawObject.position.z = size;
+        yawObject.position.x = -40;
+        yawObject.position.z = 0;
 
         var ps = new PointerLockSetup(controls);
     }
