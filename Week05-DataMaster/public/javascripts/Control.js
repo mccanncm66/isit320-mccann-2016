@@ -46,12 +46,12 @@ queryController.create = function($q) {
 
 queryController.statesBulk = function($q) {
     'use strict';
-    return runQuery('/insertBulk?fileName=States.json', $q);
+    return runQuery('/insertBulk?fileName=GameData.json', $q);
 };
 
 queryController.statesOneDoc = function($q) {
     'use strict';
-    return runQuery('/insertFile?fileName=States.json&id=oneDoc', $q);
+    return runQuery('/insertFile?fileName=GameData.json&id=oneDoc', $q);
 };
 
 queryController.design = function($q) {
@@ -66,7 +66,7 @@ queryController.viewBulk = function($q) {
 
 queryController.readOne = function($q) {
     'use strict';
-    return runQuery('/read?docName=statesDoc', $q);
+    return runQuery('/read?docName=npcObjects', $q);
 };
 
 queryController.viewOneDoc = function($q) {
