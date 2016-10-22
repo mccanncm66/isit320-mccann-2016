@@ -92,8 +92,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
                     if (grid[i][j] === 1) {
                         if (j % 5 !== 0 && i % 5 !== 0) {
                             crateSelector = true;
-                        }
-                        else {
+                        } else {
                             crateSelector = false;
                         }
                         addCube(scene, camera, wireFrame, horizontalLine, verticalLine, crateSelector);
@@ -106,9 +105,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
             }
         });
 
-        addSphere(scene, camera, wireFrame, 23, size * -6);
+        addSphere(scene, camera, wireFrame, 100, 280);
     }
-
 
     function addCube(scene, camera, wireFrame, x, z, crateType) {
         var geometry = new THREE.BoxGeometry(size, size, size);
@@ -118,8 +116,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
             material = new THREE.MeshLambertMaterial({
                 map: crateTexture
             });
-        }
-        else{
+        } else {
             material = new THREE.MeshLambertMaterial({
                 map: alternateCrateTexture
             });
@@ -207,8 +204,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         var yawObject = controls.getObject();
         scene.add(yawObject);
 
-        yawObject.position.x = -40;
-        yawObject.position.z = 0;
+        yawObject.position.x = -27;
+        yawObject.position.z = 40;
 
         var ps = new PointerLockSetup(controls);
     }

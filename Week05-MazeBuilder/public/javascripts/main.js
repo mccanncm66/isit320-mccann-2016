@@ -5,7 +5,6 @@ requirejs.config({
     baseUrl: '.',
     paths: {
         'jquery': 'components/jquery/dist/jquery',
-        /*'bootstrap': 'components/bootstrap/dist/js/bootstrap',*/
         'Three': 'javascripts/three',
         'control': 'javascripts/control',
         'floor': 'javascripts/floor',
@@ -17,9 +16,6 @@ requirejs.config({
         'Three': {
             exports: 'THREE'
         }
-        /*        'PointerLockControls': {
-                    exports: 'THREE.PointerLockControls'
-                }*/
     }
 });
 
