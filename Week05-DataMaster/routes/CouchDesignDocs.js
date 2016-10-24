@@ -145,7 +145,7 @@ function designDocs(router, nano, dbName) {
                     'map': docGamesDoc
                 },
                 'docGameQuestionDoc': {
-                    'map':docGameQuestionDoc
+                    'map': docGameQuestionDoc
                 }
                 /*,
                                 "viewStatesDoc" : {

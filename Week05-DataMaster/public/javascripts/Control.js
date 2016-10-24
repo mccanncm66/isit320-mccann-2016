@@ -74,7 +74,7 @@ queryController.viewOneDoc = function($q) {
     return runQuery('/viewOneDoc?designDoc=states&view=docGamesDoc', $q);
 };
 
-queryController.viewQuestionOneDoc = function ($q) {
+queryController.viewQuestionOneDoc = function($q) {
     'use strict';
     return runQuery('/viewQuestionOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
 };
