@@ -4,11 +4,11 @@
 
 var myModule = angular.module('myModule', ['ngRoute']);
 
-var queryController = myModule.controller('QueryController',    
+var queryController = myModule.controller('QueryController',
     function($scope, result) {
         'use strict';
         if (result.ok) {
-            $scope.result = "It worked";
+            $scope.result = 'It worked';
         } else if (result.requestFailed) {
             $scope.result = JSON.stringify(result.requestFailed, null, 4);
         } else {
@@ -71,7 +71,7 @@ queryController.readOne = function($q) {
 
 queryController.viewOneDoc = function($q) {
     'use strict';
-    return runQuery('/viewOneDoc?designDoc=states&view=docStatesDoc', $q);
+    return runQuery('/viewOneDoc?designDoc=states&view=docGamesDoc', $q);
 };
 
 queryController.viewBulkAngular = function($q) {
@@ -165,7 +165,7 @@ myModule.config(function($routeProvider) {
 
 /*
 window.onload = function() {
-   $.getJSON("/read?docName=3e82f91797ece19dcfa2285dde098e8e", function(result) {
+   $.getJSON('/read?docName=3e82f91797ece19dcfa2285dde098e8e', function(result) {
        console.log(result);
    });
 } */

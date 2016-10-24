@@ -48,6 +48,20 @@ function designDocs(router, nano, dbName) {
         }
     };
 
+    var docGamesDoc = function(doc) {
+        if (doc._id === 'npcObjects') {
+            var data = [];
+            doc.docs.forEach(function(game) {
+                data.push({
+                    'id': game.npc_id,
+                    'name': game.npc_name,
+                    'value': game.value
+                });
+            });
+            emit(doc.docs[0].abbreviation, data);
+        }
+    };
+
     /*
     var viewStatesDoc = function(doc) {
         if (doc._id === "statesDoc") {
@@ -112,6 +126,9 @@ function designDocs(router, nano, dbName) {
                 },
                 'docStatesDoc': {
                     'map': docStatesDoc
+                },
+                'docGamesDoc': {
+                    'map': docGamesDoc
                 }
                 /*,
                                 "viewStatesDoc" : {

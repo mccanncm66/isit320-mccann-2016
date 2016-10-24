@@ -7,9 +7,10 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-var servers = [ 'http://192.168.0.6:5984',
-                'http://127.0.0.1:5984',
-                'http://192.168.2.19:5984'];
+var servers = ['http://192.168.0.6:5984',
+    'http://127.0.0.1:5984',
+    'http://192.168.2.19:5984'
+];
 var serverIndex = 0;
 var nano = require('nano')(servers[serverIndex]);
 
@@ -64,7 +65,7 @@ router.get('/deleteDb', function(request, response) {
     nano.db.destroy(dbName, function(err, body) {
         if (err) {
             console.log(err);
-            response.status(err.statusCode).send(err)
+            response.status(err.statusCode).send(err);
         } else {
             response.send(body);
         }
