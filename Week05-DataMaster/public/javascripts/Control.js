@@ -74,6 +74,11 @@ queryController.viewOneDoc = function($q) {
     return runQuery('/viewOneDoc?designDoc=states&view=docGamesDoc', $q);
 };
 
+queryController.viewQuestionOneDoc = function ($q) {
+    'use strict';
+    return runQuery('/viewQuestionOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
+};
+
 queryController.viewBulkAngular = function($q) {
     'use strict';
     return runQuery('/viewStateCapitalAngular?designDoc=states&view=docStateCapital', $q);
@@ -157,6 +162,12 @@ myModule.config(function($routeProvider) {
         controller: 'QueryController',
         resolve: {
             result: queryController.viewBulkAngular
+        }
+    }).when('/viewQuestionOneDoc', {
+        templateUrl: 'templates/QueryView.html',
+        controller: 'QueryController',
+        resolve: {
+            result: queryController.viewQuestionOneDoc
         }
     }).otherwise({
         redirectTo: '/'
