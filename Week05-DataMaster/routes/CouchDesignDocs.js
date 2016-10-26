@@ -49,7 +49,7 @@ function designDocs(router, nano, dbName) {
     };
 
     var docGamesDoc = function(doc) {
-        if (doc._id === 'npcObjects') {
+        if (doc._id === 'npcData') {
             var data = [];
             doc.docs.forEach(function(game) {
                 data.push({
@@ -63,7 +63,7 @@ function designDocs(router, nano, dbName) {
     };
 
     var docGameQuestionDoc = function(doc) {
-        if (doc._id === 'npcObjects') {
+        if (doc._id === 'npcData') {
             var data = [];
             doc.docs.forEach(function(game) {
                 data.push({

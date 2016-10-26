@@ -122,7 +122,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     }
 
     function readDataBase() {
-        $.getJSON('/read?docName=npcObjects', function(data) {
+        $.getJSON('/read?docName=npcData', function(data) {
             console.log(JSON.stringify(data.docs), null, 4);
         }).fail(function (jqxhr, textStatus, error) {
             var err = textStatus + ", " + error;

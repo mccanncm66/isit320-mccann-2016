@@ -66,7 +66,7 @@ queryController.viewBulk = function($q) {
 
 queryController.readOne = function($q) {
     'use strict';
-    return runQuery('/read?docName=npcObjects', $q);
+    return runQuery('/read?docName=npcData', $q);
 };
 
 queryController.viewOneDoc = function($q) {
