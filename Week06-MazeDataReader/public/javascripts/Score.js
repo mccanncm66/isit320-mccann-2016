@@ -3,7 +3,7 @@
  */
 var Score = {
     npcData: null,
-    mainChacter:{
+    mainChacter: {
         name: 'Robin',
         value: 15
     }

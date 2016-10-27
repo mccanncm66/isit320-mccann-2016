@@ -46,7 +46,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
             new THREE.Vector3(0, -1, 0), 0, 10);
 
         renderer = new THREE.WebGLRenderer({
-            antialias: true
+            //antialias: true
         });
 
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -109,7 +109,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
                 //console.log(grid[i]);
                 for (var j = 0; j < grid[i].length; j++) {
                     if (grid[i][j] !== 0) {
-                        npcs.push([j,i]);
+                        npcs.push([j, i]);
                         addSphere(scene, camera, wireFrame, size * i, -(size * j));
                     }
 
@@ -124,9 +124,11 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
     function readDataBase() {
         $.getJSON('/read?docName=npcData', function(data) {
             console.log(JSON.stringify(data.docs), null, 4);
-        }).fail(function (jqxhr, textStatus, error) {
-            var err = textStatus + ", " + error;
-            console.log({"Request Failed": err});
+        }).fail(function(jqxhr, textStatus, error) {
+            var err = textStatus + ', ' + error;
+            console.log({
+                'Request Failed': err
+            });
             var response = JSON.parse(jqxhr.responseText);
             var responseValue = JSON.stringify(response, null, 4);
             console.log(responseValue);
@@ -241,11 +243,11 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup'], function(Floor, Poi
         $('#cameraY').html(position.y);
         $('#cameraZ').html(position.z);
 
-        $('#mazeX').html(Math.abs(Math.round(position.x/size)));
-        $('#mazeY').html(Math.abs(Math.round(position.z/size)));
+        $('#mazeX').html(Math.abs(Math.round(position.x / size)));
+        $('#mazeY').html(Math.abs(Math.round(position.z / size)));
 
         $('#npcs').empty();
-        for(var i = 0; i < npcs.length; i++) {
+        for (var i = 0; i < npcs.length; i++) {
             $('#npcs').append('<li>' + npcs[i] + '</li>');
         }
 
