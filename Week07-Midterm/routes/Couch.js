@@ -16,7 +16,6 @@ var serverIndex = 1;
 var nano = require('nano')(servers[serverIndex]);
 
 var dbName = 'game-data-mccann';
-var dbName = 'game-data-mccann';
 var docName = 'phones';
 
 var insert = require('./CouchInsert')(router, nano, dbName);
