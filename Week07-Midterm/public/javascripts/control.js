@@ -11,8 +11,9 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
     var crateTexture;
     var controls = null;
     var scene = null;
-    var npcs = [];
+    //var npcList = [];
     var npc;
+    var npcGrid = [[],[]];
     var renderer = null;
     var raycaster = null;
     var size = 20;
@@ -77,6 +78,10 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
 
         collisions.collisionDetection(controls, cubes, raycaster);
 
+        if(collisions.npcDetection(position, npcGrid)) {
+            npc.removeNpc(Math.abs(Math.round(position.x / size)), Math.abs(Math.round(position.z / size)), scene, npcGrid);
+        }
+
         // Move the camera
         controls.update();
 
@@ -112,17 +117,19 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
         });
 
         $.getJSON('npcs000.json', function(grid) {
+
             for (var i = 0; i < grid.length; i++) {
                 //console.log(grid[i]);
                 for (var j = 0; j < grid[i].length; j++) {
                     if (grid[i][j] !== 0) {
-                        npcs.push([j, i]);
+                        npc.npcList.push([j, i]);
                         npc.createNpc(scene, camera, wireFrame, size * i, -(size * j));
                     }
 
                 }
 
             }
+            npcGrid = grid;
         });
         readDataBase();
 

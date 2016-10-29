@@ -51,6 +51,24 @@ define(function() {
         return false;
     };
 
+    Collisions.prototype.npcDetection = function(mainCharacter, npcGrid) {
+        for (var i = 0; i < npcGrid.length; i++) {
+            //console.log(grid[i]);
+            for (var j = 0; j < npcGrid[i].length; j++) {
+                if (npcGrid[i][j] !== 0) {
+                    if (i === Math.abs(Math.round(mainCharacter.x / 20)) && j === Math.abs(Math.round(mainCharacter.z / 20))) {
+                        return true;
+                    }
+                }
+
+            }
+            //$('#mazeX').html(Math.abs(Math.round(mainCharacter.x / size)));
+            //$('#mazeY').html(Math.abs(Math.round(mainCharacter.z / size)));
+
+        }
+        return false;
+    }
+
     return Collisions;
 
 });
