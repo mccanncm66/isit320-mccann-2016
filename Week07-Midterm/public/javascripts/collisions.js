@@ -2,6 +2,7 @@ define(function() {
     'use strict';
 
     var THREE;
+
     function Collisions(threeInit) {
         THREE = threeInit;
     }
@@ -67,7 +68,7 @@ define(function() {
 
         }
         return false;
-    }
+    };
 
     return Collisions;
 

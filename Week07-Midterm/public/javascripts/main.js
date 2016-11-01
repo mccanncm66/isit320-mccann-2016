@@ -9,7 +9,7 @@ requirejs.config({
         'jquery': 'components/jquery/dist/jquery',
         'Three': 'javascripts/three',
         'floor': 'javascripts/floor',
-        'Npcs' : 'javascripts/npcs',
+        'Npcs': 'javascripts/npcs',
         'PointerLockControls': 'javascripts/pointer-lock-controls',
         'PointerLockSetup': 'javascripts/pointer-lock-setup'
     },
