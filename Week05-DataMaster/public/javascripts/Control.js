@@ -9,6 +9,9 @@ var queryController = myModule.controller('QueryController',
         'use strict';
         if (result.ok) {
             $scope.result = 'It worked';
+            if(result.data) {
+                text += '\n' + JSON.stringify(result.data, null, 4)
+            }
         } else if (result.requestFailed) {
             $scope.result = JSON.stringify(result.requestFailed, null, 4);
         } else {
