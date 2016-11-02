@@ -1,16 +1,24 @@
 /**
  * Created by bcuser on 10/26/16.
  */
-define(function() {
+define(['ReadDB'], function(ReadDB) {
     'use strict';
     var THREE;
     var sne;
     var size = 20;
     var baseName = 'npc';
+    var readDB;
+    var npcsDocs = [];
+    var dataIndex = 0;
 
     function Npcs(threeInit, scene) {
         THREE = threeInit;
         sne = scene;
+        readDB = new ReadDB();
+        readDB.readDataBase(function(data) {
+            readDB.docData = data;
+        });
+        npcsDocs = readDB.docData;
     }
     Npcs.prototype.npcList = [];
     Npcs.prototype.npcCoordinates = [];
@@ -26,6 +34,7 @@ define(function() {
         sphere.overdraw = true;
         sphere.position.set(x, size / 2, z);
         sphere.name = getName(baseName, Math.abs(x / size), Math.abs(z / size));
+        sphere.doc = readDB.docData.docs[dataIndex++];
         sne.add(sphere);
 
         return sphere;

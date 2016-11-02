@@ -11,7 +11,8 @@ requirejs.config({
         'floor': 'javascripts/floor',
         'Npcs': 'javascripts/npcs',
         'PointerLockControls': 'javascripts/pointer-lock-controls',
-        'PointerLockSetup': 'javascripts/pointer-lock-setup'
+        'PointerLockSetup': 'javascripts/pointer-lock-setup',
+        'ReadDB': 'javascripts/read-db'
     },
     shim: {
         'Three': {

@@ -40,6 +40,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             scene = new THREE.Scene();
             scene.fog = new THREE.Fog(0xffffff, 0, 750);
 
+            npc = new Npcs(THREE, scene);
+
             addCubes(scene, camera, false);
 
             doPointerLock();
@@ -50,8 +52,6 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             floor.drawFloor(scene);
 
             collisions = new Collisions(THREE);
-
-            npc = new Npcs(THREE, scene);
 
             raycaster = new THREE.Raycaster(new THREE.Vector3(),
                 new THREE.Vector3(0, -1, 0), 0, 10);
@@ -134,23 +134,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
                 }
                 npcGrid = grid;
             });
-            readDataBase();
-
-        }
-
-        function readDataBase() {
-            $.getJSON('/read?docName=npcData', function(data) {
-                console.log(JSON.stringify(data.docs), null, 4);
-            }).fail(function(jqxhr, textStatus, error) {
-                var err = textStatus + ', ' + error;
-                console.log({
-                    'Request Failed': err
-                });
-                var response = JSON.parse(jqxhr.responseText);
-                var responseValue = JSON.stringify(response, null, 4);
-                console.log(responseValue);
-                alert('Database not connected' + responseValue);
-            });
+            //readDataBase();
         }
 
         function addCube(scene, camera, wireFrame, x, z, crateType) {
