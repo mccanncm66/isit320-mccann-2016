@@ -11,6 +11,10 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
         var crateTexture;
         var controls = null;
         var scene = null;
+        var foundX;
+        var foundZ;
+        var totalNpcs = 3;
+        var foundNpcs = 0;
         //var npcList = [];
         var npc;
         var npcGrid = [
@@ -77,12 +81,21 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             var controlObject = controls.getObject();
             var position = controlObject.position;
 
+            var currentX = Math.abs(Math.round(position.x / size));
+            var currentZ = Math.abs(Math.round(position.z / size));
+
             drawText(position);
 
             collisions.collisionDetection(controls, cubes, raycaster);
 
             if (collisions.npcDetection(position, npcGrid)) {
-                npc.removeNpc(Math.abs(Math.round(position.x / size)), Math.abs(Math.round(position.z / size)), scene, npcGrid);
+                npc.removeNpc(currentX, currentZ, scene, npcGrid);
+                foundX = currentX;
+                foundZ = currentZ;
+            }
+
+            if (currentX !== foundX || currentZ !== foundZ) {
+                $('#npcName').html('');
             }
 
             // Move the camera

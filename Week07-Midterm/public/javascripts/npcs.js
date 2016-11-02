@@ -35,6 +35,7 @@ define(['ReadDB'], function(ReadDB) {
         sphere.position.set(x, size / 2, z);
         sphere.name = getName(baseName, Math.abs(x / size), Math.abs(z / size));
         sphere.doc = readDB.docData.docs[dataIndex++];
+
         sne.add(sphere);
 
         return sphere;
@@ -45,6 +46,9 @@ define(['ReadDB'], function(ReadDB) {
         var objectName = getName(baseName, x, z);
         var selectedObject = scene.getObjectByName(objectName);
         var index = this.npcList.indexOf(selectedObject);
+
+        $('#npcName').html(selectedObject.doc.npc_name);
+
         this.npcList.splice(index, 1);
         scene.remove(selectedObject);
     };
