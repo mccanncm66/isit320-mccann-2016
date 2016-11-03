@@ -1,7 +1,7 @@
 /* globals define: true, THREE:true */
 
-define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'],
-    function(Floor, PointerLockControls, PointerLockSetup, Collisions, Npcs) {
+define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs', 'ReadDB'],
+    function(Floor, PointerLockControls, PointerLockSetup, Collisions, Npcs, ReadDB) {
         'use strict';
         var alternateCrateTexture;
         var camera = null;
@@ -46,7 +46,13 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
 
             npc = new Npcs(THREE, scene);
 
-            addCubes(scene, camera, false);
+            var readDB = new ReadDB();
+
+            //pass in the callback method addCubes
+            //This is so the program loads the DB before it trys to assign data to npcs
+            //Dont forget to pass in the arguments addCubes needs to run
+            //null is a placeholder for the data that will be passed in after the db is read
+            readDB.readDataBase(addCubes, scene, camera, null);
 
             doPointerLock();
 
@@ -109,10 +115,11 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
-
-        function addCubes(scene, camera, wireFrame) {
+        //addCubes(scene, camera, wireFrame)
+        function addCubes(scene, camera, wireFrame, data) {
             //var horizontalLine = 0;
             //var verticalLine = 20;
+            //console.log(data);
             var crateSelector;
             $.getJSON('grid000.json', function(grid) {
                 for (var i = 0; i < grid.length; i++) {
@@ -139,7 +146,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
                     for (var j = 0; j < grid[i].length; j++) {
                         if (grid[i][j] !== 0) {
                             npc.npcList.push([j, i]);
-                            npc.createNpc(scene, camera, wireFrame, size * i, -(size * j));
+                            npc.createNpc(scene, camera, wireFrame, size * i, -(size * j), data);
                         }
 
                     }

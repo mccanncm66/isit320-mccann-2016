@@ -7,10 +7,10 @@ define(function() {
     function ReadDB() {}
     ReadDB.prototype.docData = null;
 
-    ReadDB.prototype.readDataBase = function(callback) {
+    ReadDB.prototype.readDataBase = function(callback, scene, camera) {
         $.getJSON('/read?docName=npcData', function(data) {
             console.log(JSON.stringify(data.docs), null, 4);
-            callback(data);
+            callback(scene, camera, false, data);
 
         }).fail(function(jqxhr, textStatus, error) {
             var err = textStatus + ', ' + error;

@@ -14,7 +14,7 @@ var servers = ['http://192.168.2.19:5984',
     'http://168.156.47.99:5984',
     'http://168.156.47.121:5984'
 ];
-var serverIndex = 5;
+var serverIndex = 1;
 var nano = require('nano')(servers[serverIndex]);
 
 var dbName = 'game-data-mccann';

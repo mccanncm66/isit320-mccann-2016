@@ -14,16 +14,16 @@ define(['ReadDB'], function(ReadDB) {
     function Npcs(threeInit, scene) {
         THREE = threeInit;
         sne = scene;
-        readDB = new ReadDB();
-        readDB.readDataBase(function(data) {
-            readDB.docData = data;
-        });
-        npcsDocs = readDB.docData;
+        /*        readDB = new ReadDB();
+                readDB.readDataBase(function(data) {
+                    readDB.docData = data;
+                });
+                npcsDocs = readDB.docData;*/
     }
     Npcs.prototype.npcList = [];
     Npcs.prototype.npcCoordinates = [];
 
-    Npcs.prototype.createNpc = function(sne, camera, wireFrame, x, z) {
+    Npcs.prototype.createNpc = function(sne, camera, wireFrame, x, z, data) {
         var geometry = new THREE.SphereGeometry(10, 40, 25);
         var material = new THREE.MeshNormalMaterial({
             //color: 0x00ffff,
@@ -34,7 +34,7 @@ define(['ReadDB'], function(ReadDB) {
         sphere.overdraw = true;
         sphere.position.set(x, size / 2, z);
         sphere.name = getName(baseName, Math.abs(x / size), Math.abs(z / size));
-        sphere.doc = readDB.docData.docs[dataIndex++];
+        sphere.doc = data.docs[dataIndex++];
 
         sne.add(sphere);
 
