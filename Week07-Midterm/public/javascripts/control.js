@@ -13,8 +13,6 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
         var scene = null;
         var foundX;
         var foundZ;
-        var totalNpcs = 3;
-        var foundNpcs = 0;
         //var npcList = [];
         var npc;
         var npcGrid = [
@@ -95,7 +93,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             collisions.collisionDetection(controls, cubes, raycaster);
 
             if (collisions.npcDetection(position, npcGrid)) {
-                npc.removeNpc(currentX, currentZ, scene, npcGrid);
+                npc.removeNpc(currentX, currentZ, scene, npcGrid, controls);
                 foundX = currentX;
                 foundZ = currentZ;
             }
