@@ -30,6 +30,7 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             var loader = new THREE.TextureLoader();
             crateTexture = loader.load('images/crate.jpg');
             alternateCrateTexture = loader.load('images/crate02.jpg');
+
             init();
             animate();
         }
@@ -51,6 +52,9 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
             //Dont forget to pass in the arguments addCubes needs to run
             //null is a placeholder for the data that will be passed in after the db is read
             readDB.readDataBase(addCubes, scene, camera, null);
+
+            //run this method when not connected to the DB
+            //addCubes(scene, camera, false, null);
 
             doPointerLock();
 
