@@ -1,25 +1,27 @@
-//var myModule = angular.module('myModule', ['ngRoute']);
-define(function () {
 
-    function queryController() {
+define(['runQuery'], function (runQuery) {
+    var queryController = function (query, result) {
         'use strict';
+        var $scope = $('#debug');
+        var docs = $('#docs');
+        docs.empty();
         if (result.ok) {
             $scope.result = "It worked";
             $scope.stateList = result.data;
+            docs.html('It worked');
         } else if (result.requestFailed) {
-            $scope.result = JSON.stringify(result.requestFailed, null, 4);
+            //YOUR CODE HERE PUTS INFO IN $scope AND/OR docs
+            $scope.result = "Request Failed";
         } else if (result.error) {
-            $scope.result = result.error + ': ' + result.message;
-        } else if (result.docs) {
-            $scope.stateList = result.docs;
-        } else if (result.rows) {
-            $scope.stateList = result.rows;
+            //YOUR CODE HERE  PUTS INFO IN $scope AND/OR docs
+            $scope.result = 'Error!';
         } else {
-            $scope.result = result;
+            //YOUR CODE HERE PUTS INFO IN $scope AND/OR docs
+            $scope.result = 'nothing happened';
         }
 
-        $scope.docs = JSON.stringify(result.docs, null, 4);
-    }
+        //docs.html('YOUR CODE HERE PUTS INFO IN docs');
+    };
 
     queryController.delete = function ($q) {
         'use strict';
@@ -31,14 +33,20 @@ define(function () {
         return runQuery('/createDb', $q);
     };
 
-    queryController.statesBulk = function ($q) {
+    queryController.insertNpcsBulk = function ($q) {
         'use strict';
-        return runQuery('/insertBulk?fileName=States.json', $q);
+        return runQuery('/insertBulk?fileName=Npcs.json', $q);
     };
 
-    queryController.statesOneDoc = function ($q) {
+    queryController.insertStatesBulk = function($q) {
         'use strict';
-        return runQuery('/insertFile?fileName=States.json&id=oneDoc', $q);
+        return runQuery('/insertBulk?fileName=States.json', $q);
+
+    }
+
+    queryController.insertNpcsOneDoc = function ($q) {
+        'use strict';
+        return runQuery('/insertFile?fileName=Npcs.json&id=oneDoc', $q);
     };
 
     queryController.design = function ($q) {
@@ -46,24 +54,19 @@ define(function () {
         return runQuery('/designDoc', $q);
     };
 
-    queryController.viewBulk = function ($q) {
-        'use strict';
-        return runQuery('/viewBulk?designDoc=states&view=docBulk', $q);
-    };
-
     queryController.readOne = function ($q) {
         'use strict';
-        return runQuery('/read?docName=statesDoc', $q);
+        return runQuery('/read?docName=npcData', $q);
+    };
+
+    queryController.viewBulk = function ($q) {
+        'use strict';
+        return runQuery('/viewNpcsBulk?designDoc=game&view=npcsBulk', $q);
     };
 
     queryController.viewOneDoc = function ($q) {
         'use strict';
-        return runQuery('/viewOneDoc?designDoc=states&view=docStatesDoc', $q);
-    };
-
-    queryController.viewBulkAngular = function ($q) {
-        'use strict';
-        return runQuery('/viewStateCapitalAngular?designDoc=states&view=docStateCapital', $q);
+        return runQuery('/viewNpcsOneDoc?designDoc=game&view=npcsOneDoc', $q);
     };
 
     return queryController;
