@@ -62,7 +62,7 @@ define(['ReadDB'], function(ReadDB) {
         this.npcList.splice(index, 1);
         scene.remove(selectedObject);
 
-        if(this.totalFound == this.totalNpcs) {
+        if (this.totalFound == this.totalNpcs) {
             blocker.style.display = 'none';
             //instructions.innerHTML = 'You have found all the characters!';
             winMessage.style.display = 'inline';

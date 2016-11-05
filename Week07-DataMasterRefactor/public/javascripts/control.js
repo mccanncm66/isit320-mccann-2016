@@ -3,7 +3,7 @@
  */
 
 //var myModule = angular.module('myModule', ['ngRoute']);
-define(['nameController', 'queryController'], function (nameController, queryController) {
+define(['Route', 'nameController', 'queryController'], function (Route, nameController, queryController) {
 
     function control ($routeProvider) {
         'use strict';
@@ -16,21 +16,27 @@ define(['nameController', 'queryController'], function (nameController, queryCon
             }
         }).when('/deleteDb', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.delete
             }
         }).when('/createDb', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.create
             }
         }).when('/insertStatesBulk', {
             templateUrl: 'templates/States.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.statesBulk
+            }
+        }).when('/insertNpcsBulk', {
+            templateUrl: 'templates/States.html',
+            controller: queryController,
+            resolve: {
+                result: queryController.insertNpcsBulk
             }
         }).when('/insertStatesOneDoc', {
             templateUrl: 'templates/States.html',
@@ -38,33 +44,39 @@ define(['nameController', 'queryController'], function (nameController, queryCon
             resolve: {
                 result: queryController.statesOneDoc
             }
+        }).when('/insertNpcsOneDoc', {
+            templateUrl: 'templates/States.html',
+            controller: queryController,
+            resolve: {
+                result: queryController.insertNpcsOneDoc
+            }
         }).when('/insertDesignDoc', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.design
             }
         }).when('/readOne', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.readOne
             }
         }).when('/viewBulk', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.viewBulk
             }
         }).when('/viewOneDoc', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.viewOneDoc
             }
         }).when('/viewBulkStatesCapital', {
             templateUrl: 'templates/QueryView.html',
-            controller: 'QueryController',
+            controller: queryController,
             resolve: {
                 result: queryController.viewBulkAngular
             }
