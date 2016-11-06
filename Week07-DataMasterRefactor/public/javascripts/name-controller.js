@@ -1,6 +1,7 @@
-define(['runQuery'], function (runQuery) {
-    var nameController = function (query, data) {
-        'use strict';
+define(['runQuery'], function(runQuery) {
+    'use strict';
+    var nameController = function(query, data) {
+        //'use strict';
         var dbList = '';
         var debug = $('#debug');
         var docs = $('#docs');
@@ -19,13 +20,13 @@ define(['runQuery'], function (runQuery) {
         // VERY SIMILAR TO queryController, but simpler.
     };
 
-    nameController.databaseName = function ($q) {
-        'use strict';
+    nameController.databaseName = function($q) {
+        //'use strict';
         return runQuery('/databaseName', $q);
     };
 
-    nameController.allDbs = function ($q) {
-        'use strict';
+    nameController.allDbs = function($q) {
+        //'use strict';
         return runQuery('/listDb', $q);
     };
 
