@@ -1,12 +1,22 @@
-define(function (require) {
+define(function(require) {
+    'use strict';
 
     function runQuery(query, $q) {
-        'use strict';
+        //'use strict';
         var controller = $q.getController();
-        $.getJSON(query, function (json) {
+        $.getJSON(query, function(json) {
+            console.log('run-query called');
+            console.log('query requested');
+            console.log(query);
+            console.log('json data');
+            console.log(json);
+            console.log('controller');
+            console.log(controller);
             controller(query, json);
-        }).fail(function (jqxhr, textStatus, error) {
-            var response = {error: "Unknown. Is program running?"};
+        }).fail(function(jqxhr, textStatus, error) {
+            var response = {
+                error: 'Unknown. Is program running?'
+            };
             if (jqxhr.responseText) {
                 response = JSON.parse(jqxhr.responseText);
                 response.genericError = error;

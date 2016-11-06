@@ -3,10 +3,11 @@
  */
 
 //var myModule = angular.module('myModule', ['ngRoute']);
-define(['Route', 'nameController', 'queryController'], function (Route, nameController, queryController) {
+define(['Route', 'nameController', 'queryController'], function(Route, nameController, queryController) {
+    'use strict';
 
-    function control ($routeProvider) {
-        'use strict';
+    function findRoutes($routeProvider) {
+        //'use strict';
         $routeProvider.when('/databaseName', {
             templateUrl: 'templates/DatabaseNames.html',
             controller: nameController,
@@ -83,7 +84,7 @@ define(['Route', 'nameController', 'queryController'], function (Route, nameCont
         }).otherwise({
             redirectTo: '/'
         });
-    };
+    }
 
-    return control;
+    return findRoutes;
 });
