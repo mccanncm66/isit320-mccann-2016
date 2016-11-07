@@ -2,6 +2,7 @@ define(function(require) {
     'use strict';
 
     function runQuery(query, $q) {
+        console.log('run query started');
         //'use strict';
         var controller = $q.getController();
         $.getJSON(query, function(json) {

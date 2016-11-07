@@ -65,12 +65,12 @@ define(['runQuery'], function(runQuery) {
 
     queryController.viewBulk = function($q) {
         //'use strict';
-        return runQuery('/viewNpcsBulk?designDoc=game&view=npcsBulk', $q);
+        return runQuery('/viewNpcsBulk?designDoc=states&view=npcsBulk', $q);
     };
 
     queryController.viewOneDoc = function($q) {
         //'use strict';
-        return runQuery('/viewNpcsOneDoc?designDoc=game&view=npcsOneDoc', $q);
+        return runQuery('/viewNpcsOneDoc?designDoc=states&view=npcsOneDoc', $q);
     };
 
     return queryController;
