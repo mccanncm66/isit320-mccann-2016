@@ -81,6 +81,18 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
             resolve: {
                 result: queryController.viewBulkAngular
             }
+        }).when('/viewNpcsBulk', {
+            templateUrl: 'templates/QueryView.html',
+            controller: queryController,
+            resolve: {
+                result: queryController.viewBulk
+            }
+        }).when('/viewNpcsOneDoc', {
+            templateUrl: 'templates/QueryView.html',
+            controller: queryController,
+            resolve: {
+                result: queryController.viewOneDoc
+            }
         }).otherwise({
             redirectTo: '/'
         });

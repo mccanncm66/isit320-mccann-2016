@@ -8,7 +8,7 @@ block content
             p (W, A, S, D = Move, SPACE = Jump, MOUSE = Look around)
     div#win(style='display:none')
         span(style='font-size:40px; color:red;') You found them all!
-        p(style='color:red') Thanks for playing
+        p(style='color:red') Thanks for playing. Press 'Esc' exit.
      div#message
             p
                 strong CameraX:
@@ -26,7 +26,16 @@ block content
                  strong MazeY:
                     span#mazeY
             p
-                 strong Npc Found:
+                strong Living Npcs:
+                    span#living
+            p
+                strong Dead Npcs:
+                    span#dead
+            p
+                 strong Npc Found Name:
                     span#npcName
+            p
+                strong Score:
+                    span#playerScore
 
             ul#npcs
