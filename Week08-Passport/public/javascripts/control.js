@@ -6,7 +6,7 @@ var Control = (function() {
 
     function Control() {
         console.log("Control constructor called");
-        $("#info").click(info);
+        $("#status").click(status);
     }
 
     var info = function() {
