@@ -13,6 +13,9 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
         var scene = null;
         var foundX;
         var foundZ;
+        var scoreX = 0;
+        var scoreZ = 0;
+        var playerScore = 0;
         //var npcList = [];
         var npc;
         var npcGrid = [
@@ -91,6 +94,13 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
 
             var currentX = Math.abs(Math.round(position.x / size));
             var currentZ = Math.abs(Math.round(position.z / size));
+
+            if (currentX !== scoreX || currentZ !== scoreZ) {
+                scoreX = currentX;
+                scoreZ = currentZ;
+                ++playerScore;
+                $('#playerScore').html(playerScore.toString());
+            }
 
             drawText(position);
 
@@ -208,6 +218,8 @@ define(['floor', 'PointerLockControls', 'PointerLockSetup', 'Collisions', 'Npcs'
 
             $('#mazeX').html(Math.abs(Math.round(position.x / size)));
             $('#mazeY').html(Math.abs(Math.round(position.z / size)));
+            $('#living').html(npc.totalNpcs);
+            $('#dead').html(npc.totalFound);
 
             $('#npcs').empty();
             for (var i = 0; i < npcs.length; i++) {

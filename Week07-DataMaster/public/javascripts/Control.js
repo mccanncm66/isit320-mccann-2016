@@ -4,18 +4,27 @@
 
 var myModule = angular.module('myModule', ['ngRoute']);
 
+var currentDoc = null;
+var currentIndex = 0;
+
 var queryController = myModule.controller('QueryController',
     function($scope, result) {
         'use strict';
         if (result.ok) {
             $scope.result = 'It worked';
-            if(result.data) {
-                text += '\n' + JSON.stringify(result.data, null, 4)
+            if (result.data) {
+                text += '\n' + JSON.stringify(result.data, null, 4);
             }
         } else if (result.requestFailed) {
             $scope.result = JSON.stringify(result.requestFailed, null, 4);
         } else {
             $scope.result = result;
+            if ($scope.result.docs) {
+                currentDoc = $scope.result.docs;
+                displayEditControls(currentDoc, currentIndex);
+            } else {
+                hideEditControls();
+            }
         }
 
         $scope.docs = result.docs;
@@ -177,6 +186,44 @@ myModule.config(function($routeProvider) {
     });
 });
 
+/*var npcName = document.getElementById('npcName');
+ var npcDescription = document.getElementById('npcDescription');
+ var npcQuestion = document.getElementById('npcQuestion');*/
+
+var displayEditControls = function(doc, index) {
+    'use strict';
+    var editControls = document.getElementById('editControls');
+    if (index >= 0 && index < doc.length) {
+        editControls.style.display = 'block';
+        $('#npcName').val(doc[index].npc_name);
+        $('#npcDescription').val(doc[index].description);
+        $('#npcQuestion').val(doc[index].question);
+    }
+};
+
+var hideEditControls = function() {
+    'use strict';
+    var editControls = document.getElementById('editControls');
+    editControls.style.display = 'none';
+};
+
+var nextDoc = function() {
+    'use strict';
+    console.log('next clicked');
+    if (currentIndex < currentDoc.length - 1) {
+        ++currentIndex;
+    }
+    displayEditControls(currentDoc, currentIndex);
+};
+
+var backDoc = function() {
+    'use strict';
+    console.log('back clicked');
+    if (currentIndex > 0) {
+        --currentIndex;
+    }
+    displayEditControls(currentDoc, currentIndex);
+};
 /*
 window.onload = function() {
    $.getJSON('/read?docName=3e82f91797ece19dcfa2285dde098e8e', function(result) {

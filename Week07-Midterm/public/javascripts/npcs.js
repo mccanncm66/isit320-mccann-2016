@@ -58,11 +58,12 @@ define(['ReadDB'], function(ReadDB) {
 
         $('#npcName').html(selectedObject.doc.npc_name);
         ++this.totalFound;
+        --this.totalNpcs;
 
         this.npcList.splice(index, 1);
         scene.remove(selectedObject);
 
-        if(this.totalFound == this.totalNpcs) {
+        if (this.totalNpcs === 0) {
             blocker.style.display = 'none';
             //instructions.innerHTML = 'You have found all the characters!';
             winMessage.style.display = 'inline';

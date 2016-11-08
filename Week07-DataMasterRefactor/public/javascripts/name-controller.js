@@ -1,11 +1,17 @@
-define(['runQuery'], function (runQuery) {
-    var nameController = function (query, data) {
-        'use strict';
-
+define(['runQuery'], function(runQuery) {
+    'use strict';
+    var nameController = function(query, data) {
+        //'use strict';
+        var dbList = '';
         var debug = $('#debug');
         var docs = $('#docs');
         if (query == '/databaseName') {
             debug.html(data.currentDatabaseName);
+        } else if (query == '/listDb') {
+            for (var i = 0; i < data.length; i++) {
+                dbList += data[i] + '\n';
+            }
+            docs.html(dbList);
         }
         // YOU WRITE THE REST OF THE CODE
         // YOU NEED TO HANDLE WHAT HAPPENS WHEN
@@ -14,13 +20,13 @@ define(['runQuery'], function (runQuery) {
         // VERY SIMILAR TO queryController, but simpler.
     };
 
-    nameController.databaseName = function ($q) {
-        'use strict';
+    nameController.databaseName = function($q) {
+        //'use strict';
         return runQuery('/databaseName', $q);
     };
 
-    nameController.allDbs = function ($q) {
-        'use strict';
+    nameController.allDbs = function($q) {
+        //'use strict';
         return runQuery('/listDb', $q);
     };
 
