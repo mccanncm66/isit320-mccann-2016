@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var google = require('./routes/google-auth');
+var twitter = require('./routes/login-twitter');
 
 var session = require('express-session');
 var passport = require('passport');
@@ -36,6 +37,7 @@ app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', google);
+app.use('/twitter', twitter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) { 'use strict';
