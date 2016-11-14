@@ -39,7 +39,7 @@ router.get('/callback',
     });
 
 router.get('/profile', function(req, res) {
-    'use strict';
+    'use strict';z
     console.log(twitterProfile);
     res.render('profile-twitter', {
         title: 'Twitter Account',
