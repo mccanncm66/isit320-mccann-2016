@@ -3,10 +3,11 @@
  */
 
 var Control = (function() {
+    'use strict';
 
     function Control() {
-        console.log("Control constructor called");
-        $("#status").click(status);
+        console.log('Control constructor called');
+        $('#status').click(status);
     }
 
     var info = function() {
@@ -19,5 +20,6 @@ var Control = (function() {
 }());
 
 $(document).ready(function() {
+    'use strict';
     var control = new Control();
 });

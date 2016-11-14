@@ -9,36 +9,41 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 
 var TWITTER_CONSUMER_KEY = 'Rr5925aGxDkeATYDFf4q1zRVH';
 var TWITTER_CONSUMER_SECRET = 'pcVFz2qeQsY5tM0getw82G5DvLewcBkDPalwIloI7EjCIYqsWe';
+var twitterProfile = null;
 
 passport.use(new TwitterStrategy({
         consumerKey: TWITTER_CONSUMER_KEY,
         consumerSecret: TWITTER_CONSUMER_SECRET,
-        callbackURL: "http://localhost:30025/twitter/callback"
+        callbackURL: 'http://localhost:30025/twitter/callback'
     },
     function(token, tokenSecret, profile, cb) {
+        'use strict';
         console.log('Twitter strategy callback', profile);
+        twitterProfile = profile;
         process.nextTick(function() {
             return cb(null, profile);
         });
     }));
 
-
 router.get('/login',
     passport.authenticate('twitter'));
 
 router.get('/callback',
-    passport.authenticate('twitter', { failureRedirect: '/login' }),
+    passport.authenticate('twitter', {
+        failureRedirect: '/login'
+    }),
     function(req, res) {
+        'use strict';
         // Successful authentication, redirect home.
         res.redirect('/');
     });
 
 router.get('/profile', function(req, res) {
     'use strict';
-    console.log(req);
+    console.log(twitterProfile);
     res.render('profile-twitter', {
         title: 'Twitter Account',
-        user: req.user
+        user: twitterProfile
     });
 });
 
