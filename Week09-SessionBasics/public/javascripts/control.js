@@ -28,6 +28,15 @@ $(document).ready(function() {
     $('#viewPage02').click(function() {
         showPage('/views/page02');
     });
+    $('#fileStore').click(function(){
+        showPage('/views/file-store');
+    });
+    $('#request').click(function(){
+        showPage('/views/request');
+    });
+    $('#sessionStatus').click(function(){
+        showPage('/views/session-status');
+    })
 });
 
 

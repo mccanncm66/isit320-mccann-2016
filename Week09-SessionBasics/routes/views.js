@@ -53,5 +53,12 @@ module.exports = (function() {
         });
     });
 
+    router.get('/session-status', function(request, response, next) {
+        var session = request.session;
+        response.send({
+            session: session
+        });
+    });
+
     return router;
 })();

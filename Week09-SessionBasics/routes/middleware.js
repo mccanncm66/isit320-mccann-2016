@@ -28,16 +28,6 @@ router.use(session({
     },
     secret: process.env.SESSION_SECRET || 'keyboard cat',
     resave: true,
-    saveUninitialized: true
-}));
-
-router.use(session({
-    genid: function(req) {
-        'use strict';
-        return uuid.v4(); // use UUIDs for session IDs
-    },
-    secret: process.env.SESSION_SECRET || 'keyboard cat',
-    resave: true,
     saveUninitialized: true,
     store: new FileStore()
 }));
