@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-
 var routeParamMiddleware = function(request, response, next) {
     'use strict';
     console.log('My middleware called by this route:', request.originalUrl);

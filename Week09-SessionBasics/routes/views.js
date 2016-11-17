@@ -6,11 +6,15 @@ module.exports = (function() {
     'use strict';
 
     router.get('/page01', function(request, response, next) {
-        response.send({ result: 'you viewed this page ' + request.session.views['/views/page01'] + ' times'});
+        response.send({
+            result: 'you viewed this page ' + request.session.views['/views/page01'] + ' times'
+        });
     });
 
     router.get('/page02', function(request, response, next) {
-        response.send({result: 'you viewed this page ' + request.session.views['/views/page02'] + ' times'});
+        response.send({
+            result: 'you viewed this page ' + request.session.views['/views/page02'] + ' times'
+        });
     });
 
     router.get('/file-store', function(request, response, next) {

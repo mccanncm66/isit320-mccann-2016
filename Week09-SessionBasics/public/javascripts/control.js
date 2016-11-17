@@ -20,7 +20,7 @@ $(document).ready(function() {
         showPage('/page02');
     });
     $('#page03').click(function() {
-        showPage('/page03')
+        showPage('/page03');
     });
     $('#viewPage01').click(function() {
         showPage('/views/page01');
@@ -28,19 +28,13 @@ $(document).ready(function() {
     $('#viewPage02').click(function() {
         showPage('/views/page02');
     });
-    $('#fileStore').click(function(){
+    $('#fileStore').click(function() {
         showPage('/views/file-store');
     });
-    $('#request').click(function(){
+    $('#request').click(function() {
         showPage('/views/request');
     });
-    $('#sessionStatus').click(function(){
+    $('#sessionStatus').click(function() {
         showPage('/views/session-status');
-    })
+    });
 });
-
-
-
-
-
-
