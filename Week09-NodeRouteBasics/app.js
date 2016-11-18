@@ -4,9 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var posts = require('./routes/post');
 
 var app = express();
 
@@ -18,12 +21,19 @@ app.set('view engine', 'jade');
 app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.post('/post', posts, function(request, response) {
+    console.log(request.body);
+    console.log('post app.use called');
+    var name = request.body.name,
+        color = request.body.color;
+    response.json(request.body);
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) { 'use strict';

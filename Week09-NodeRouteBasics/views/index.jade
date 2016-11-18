@@ -4,9 +4,17 @@ block content
   h1= title
   p Welcome to #{title}
 
-  div
-    input#milesInput(type="text")
-
-  button.btn.btn-primary.btn-lg#feetToMiles Feet To Miles
+  div.Container
+    div
+      p Enter number feet to be converted to miles
+        span(style="color:red")  OR
+        span  the radius of a circle to calculate the circumference.
+      p
+        input#milesInput(type="text")
+      p
+        button.btn.btn-primary.btn-lg#feetToMiles Feet To Miles
+        button.btn.btn-group-sm#getFeet How many feet in a mile?
+        button.btn.btn-primary.btn-lg#calcCir Calculate Circumference
+        button.btn.btn-danger#testPost Test Post
 
   pre#debug

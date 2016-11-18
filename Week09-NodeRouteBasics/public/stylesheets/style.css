@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+.Container {
+  width:350px;
+  border:3px solid cornflowerblue;
+  border-radius:15px;
+}
+
+.Container div {
+  padding:10px;
+}
+
+.Container p {
+  text-align: center;
+}
+
+.Container button {
+  margin-bottom:5px;
+}
