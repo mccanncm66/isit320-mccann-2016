@@ -1,41 +1,47 @@
 $(document).ready(function() {
     'use strict';
     $.postJSON = function(url, data, func) {
-        $.post(url,data,func,'json');
+        $.post(url, data, func, 'json');
     };
     $('#feetToMiles').click(function() {
         console.log('Clicked on Feet To Miles');
         var miles = $('#milesInput').val();
-        var input = {miles: miles};
-        $.getJSON('/feetToMiles', input, function(result) {
-            var output = JSON.stringify(result.TotalMiles, null, 4);
+        var input = {
+            miles: miles
+        };
+        $.getJSON('/feetToMiles', input, function(data) {
+            var output = JSON.stringify(data.result, null, 4);
             console.log(output);
             $('#debug').html(output);
         });
     });
 
     $('#getFeet').click(function() {
-        $.getJSON('/getFeetInMile', function(result) {
-            $('#debug').html(JSON.stringify(result.FeetInMile, null, 4));
-        })
+        $.getJSON('/getFeetInMile', function(data) {
+            $('#debug').html(JSON.stringify(data.result, null, 4));
+        });
     });
 
-    $('#calcCir').click(function(){
+    $('#calcCir').click(function() {
         var radius = $('#milesInput').val();
-        var input = {radius: radius};
-        $.getJSON('/getCircumference', input, function(result){
-            var output = JSON.stringify(result.Circumference, null, 4);
+        var input = {
+            radius: radius
+        };
+        $.postJSON('/getCircumference', input, function(data) {
+            var output = JSON.stringify(data.result, null, 4);
             console.log(output);
             $('#debug').html(output);
         });
     });
 
-    $('#testPost').click(function(){
-        var data = {result:'success'};
-        console.log('testPost clicked');
-        $.postJSON('/post/test-post', data, function(data){
-            var output = JSON.stringify(data, null, 4);
-            console.log(textStatus);
+    $('#postMilesToFeet').click(function() {
+        var miles = $('#milesInput').val();
+        var data = {
+            result: 'success',
+            miles: miles
+        };
+        $.getJSON('/miles-to-feet', data, function(data) {
+            var output = JSON.stringify(data.result, null, 4);
             $('#debug').html(output);
         });
     });

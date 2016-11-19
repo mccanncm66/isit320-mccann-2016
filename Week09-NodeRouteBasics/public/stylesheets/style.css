@@ -22,5 +22,10 @@ a {
 }
 
 .Container button {
-  margin-bottom:5px;
+  margin:5px;
+}
+
+#debug {
+  width:350px;
+  margin-top:20px;
 }

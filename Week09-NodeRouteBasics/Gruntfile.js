@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
             options: {
                 ignores: [
-                    '**/node_modules/**', '**/components/**'
+                    '**/node_modules/**', '**/components/**', '**/spec/**'
                 ],
                 reporter: require('jshint-stylish'),
                 strict: true,
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                 }
             }
         },
- 
+
         karma: {
             karma: {
                 configFile: 'karma.conf.js'
