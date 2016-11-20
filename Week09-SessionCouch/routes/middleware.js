@@ -26,8 +26,9 @@ router.use(function(request, response, next) {
  * * Couch Session
  **********************************/
 //Add couchdb server IP address
-servers = ['168.156.47.122'];
-
+servers = ['168.156.47.122',
+    '192.168.0.11'
+];
 
 var couchStore = new ConnectCouchDB({
     // Name of the database you would like to use for sessions.
@@ -38,7 +39,7 @@ var couchStore = new ConnectCouchDB({
     //username: 'username',
     //password: 'password',
 
-    host: servers[0],
+    host: servers[1],
 
     // Optional. How often expired sessions should be cleaned up.
     // Defaults to 600000 (10 minutes).
@@ -95,8 +96,6 @@ router.use(function(request, response, next) {
 
     next();
 });
-
-
 
 // WHAT DO YOU NEED TO DO HERE TO EXPORT THIS CODE FROM THIS MODULE?
 module.exports = router;

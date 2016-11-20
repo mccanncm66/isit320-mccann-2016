@@ -20,7 +20,7 @@ $(document).ready(function() {
         showPage('/page02');
     });
     $('#page03').click(function() {
-        showPage('/page03')
+        showPage('/page03');
     });
     $('#viewPage01').click(function() {
         showPage('/views/page01');
@@ -28,10 +28,10 @@ $(document).ready(function() {
     $('#viewPage02').click(function() {
         showPage('/views/page02');
     });
+    $('#designDoc').click(function() {
+        showPage('/designDoc');
+    });
+    $('#sessionView').click(function() {
+        showPage('/viewSessions?designDoc=elf-session&view=elfSessions');
+    });
 });
-
-
-
-
-
-

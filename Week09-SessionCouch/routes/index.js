@@ -1,6 +1,5 @@
 var express = require('express');
-var router = express.Router();
-
+var router = require('./Couch');
 
 var routeParamMiddleware = function(request, response, next) {
     'use strict';
