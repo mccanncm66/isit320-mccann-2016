@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  div
+    p
+      button.btn.btn-primary#page01 Page01
+    p
+      button.btn.btn-primary#page02 Page02
+    p
+      button.btn.btn-primary#page03 Page03
+
+  div
+    p
+      button.btn.btn-primary#viewPage01 View Page01
+    p
+      button.btn.btn-primary#viewPage02 View Page02
+
+  div
+    p
+      button.btn.btn-primary#fileStore File Store
+    p
+      button.btn.btn-primary#request Request
+    p
+      button.btn.btn-primary#sessionStatus Session Status
+
+  pre#display
