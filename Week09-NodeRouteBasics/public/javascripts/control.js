@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     'use strict';
     var isValid;
@@ -26,7 +25,7 @@ $(document).ready(function() {
             miles: miles
         };
         if (isValid) {
-            $.getJSON('/feetToMiles', input, function (data) {
+            $.getJSON('/feetToMiles', input, function(data) {
                 var output = JSON.stringify(data.result, null, 4);
                 console.log(output);
                 $('#debug').html(output);
@@ -46,7 +45,7 @@ $(document).ready(function() {
             radius: radius
         };
         if (isValid) {
-            $.postJSON('/getCircumference', input, function (data) {
+            $.postJSON('/getCircumference', input, function(data) {
                 var output = JSON.stringify(data.result, null, 4);
                 console.log(output);
                 $('#debug').html(output);
@@ -61,7 +60,7 @@ $(document).ready(function() {
             miles: miles
         };
         if (isValid) {
-            $.getJSON('/miles-to-feet', data, function (data) {
+            $.getJSON('/miles-to-feet', data, function(data) {
                 var output = JSON.stringify(data.result, null, 4);
                 $('#debug').html(output);
             });
