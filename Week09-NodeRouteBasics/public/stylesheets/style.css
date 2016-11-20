@@ -28,4 +28,6 @@ a {
 #debug {
   width:350px;
   margin-top:20px;
+  word-wrap:normal;
+  padding:10px;
 }
