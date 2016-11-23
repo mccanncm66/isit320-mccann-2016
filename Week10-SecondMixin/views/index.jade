@@ -1,0 +1,37 @@
+extends layout
+
+include mixins
+include mixin-radios
+include mixin-inputs
+
+block content
+  h1= pageTitle
+  p Welcome to #{programTitle}
+
+  +elfFormPanel("Main Form").container.alert-danger#target
+
+    +elfPanel("Who do you know?")
+      +elfCheckBox("Kurosawa", "Kurosawa", "Kurosawa")#checkBox01
+      +elfCheckBox("Tolstoy", "Tolstoy", "Tolstoy")#checkBox02
+      +elfCheckBox("Mifune", "Mifune", "Mifune")#checkBox03
+
+    +elfRadioPanel("What is your favorite film?")
+      +elfRadio("Seven Samurai", "Seven Samurai")
+      +elfRadio("Ran", "Ran")
+      +elfRadio("Rashomon", "Rashomon")
+      +elfRadio("High and Low", "High and Low")
+      +elfRadio("Ikiru", "Ikiru")
+
+    +elfPanel("Enter your name for submission")
+      +elfInput("Enter name here:", "subject", "Enter a subject")#subject.form-control
+
+    +elfPanel("Submit Form")
+      input.btn.btn-danger(type="submit", value="Submit")
+
+  div
+    pre#formResults
+
+  div
+    pre#serverResults
+
+

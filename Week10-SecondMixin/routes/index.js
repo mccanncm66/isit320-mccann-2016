@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get('/', function(req, res) {
   res.render('index', { pageTitle: 'Main Page',
-  programTitle: 'Week10-JadeMixinBasics'});
+  programTitle: 'Week10-SecondMixin'});
 });
 
 router.get('/foo', function(request, response){
