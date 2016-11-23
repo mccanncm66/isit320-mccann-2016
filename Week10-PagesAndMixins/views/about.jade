@@ -1,0 +1,16 @@
+extends menu-mixin
+include mixins
+
+block append content
+    h1= title
+    p Welcome to #{title}
+
+    +attribution
+
+    +bio
+
+    +bootswatch('cerulean')
+
+//
+   Created by bcuser on 11/23/16.
+
