@@ -26,6 +26,20 @@ function designDocs(router, nano, dbName) {
         }
     };
 
+    var elfSessionStore = function(doc) {
+        if (doc.collectionName === 'sessions' && doc.expires){
+            emit(doc._id, doc);
+        }
+        // if the doc **collectionName** property equals **'sessions'** then emit the **doc._id** and the **doc** itself.
+    };
+
+    var elfSessionExpires = function (doc) {
+        // if the doc **collectionName** property equals **'sessions'** and **doc.expires exists** then emit the **doc.expires**.
+        if (doc.collectionName === 'sessions' && doc.expires) {
+            emit(doc.expires);
+        }
+    };
+
     function createDesignDocument(designDocument, designName, response) {
         var nanoDb = nano.db.use(dbName);
         nanoDb.insert(designDocument, designName, function(error, body) {
@@ -49,6 +63,12 @@ function designDocs(router, nano, dbName) {
             'views': {
                 'elfSessions': {
                     'map': elfSessions
+                },
+                'elfSessionStore' : {
+                    'map': elfSessionStore
+                },
+                'elfSessionExpires': {
+                    'map': elfSessionExpires
                 }
             }
         };

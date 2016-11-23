@@ -6,9 +6,11 @@ var uuid = require('uuid');
 
 var FileStore = require('session-file-store')(session);
 var ConnectCouchDB = require('connect-couchdb')(session);
+var sessionstore = require('sessionstore');
 
 // LOAD PARSEURL:
 var parseurl = require('parseurl');
+
 // WHAT OTHER PACKAGES NEED TO BE LOADED BEFORE THIS CODE WILL WORK?
 
 router.use(function(request, response, next) {
@@ -30,7 +32,19 @@ servers = ['168.156.47.122',
     '168.156.47.122'
 ];
 
-var couchStore = new ConnectCouchDB({
+
+var sessionStore = sessionstore.createSessionStore({
+    type: 'couchdb',
+    host: servers[1], // optional
+    port: 5984, // optional
+    dbName: 'sessionstore-mccann', // optional
+    collectionName: 'sessions', // optional
+    timeout: 10000 // optional
+}, function(data) {
+    console.log('sessionStore callback', data);
+});
+
+/*var couchStore = new ConnectCouchDB({
     // Name of the database you would like to use for sessions.
     name: 'couch-session-mccann',
 
@@ -53,7 +67,7 @@ var couchStore = new ConnectCouchDB({
     // Optional. How many time between two identical session store
     // Defaults to 60000 (1 minute)
     setThrottle: 60000
-});
+});*/
 
 /*******END COUCH SESSION******/
 
@@ -67,7 +81,7 @@ var couchStore = new ConnectCouchDB({
     saveUninitialized: true
 }));*/
 
-router.use(session({
+/*router.use(session({
     genid: function(req) {
         'use strict';
         return uuid.v4(); // use UUIDs for session IDs
@@ -76,6 +90,19 @@ router.use(session({
     resave: true,
     saveUninitialized: true,
     store: couchStore
+}));*/
+
+router.use(session({
+    genid: function(req) {
+        'use strict';
+        console.log('id generated');
+        return uuid.v4(); // use UUIDs for session IDs
+    },
+    key: 'app.sess',
+    secret: process.env.SESSION_SECRET || 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    store: sessionStore
 }));
 
 router.use(function(request, response, next) {

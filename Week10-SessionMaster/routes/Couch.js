@@ -17,7 +17,7 @@ var servers = ['http://168.168.2.19:5984',
 var serverIndex = 5;
 var nano = require('nano')(servers[serverIndex]);
 
-var dbName = 'couch-session-mccann';
+var dbName = 'sessionstore-mccann';
 var docName = 'phones';
 
 var insert = require('./CouchInsert')(router, nano, dbName);
