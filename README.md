@@ -1,8 +1,7 @@
 # isit320-mccann-2016
-This is the branch Week09 for Isit320.
 
-Which contains the following.
+This is Week10 Branch of Isit320 which include the following:
 
-Node Route Basics.
-Session Basics.
-Session Couch.
+Express Pages and Mixins
+Express Session Master
+Jade Mixin Basics
