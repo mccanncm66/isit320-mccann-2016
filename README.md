@@ -1,11 +1,8 @@
 # isit320-mccann-2016
+This is the branch Week09 for Isit320.
 
-This is modified
+Which contains the following.
 
-Another test from home
-
-One more test from home
-
-A test from school
-
-Another test haha
+Node Route Basics.
+Session Basics.
+Session Couch.
