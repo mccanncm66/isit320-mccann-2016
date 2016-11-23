@@ -1,11 +1,7 @@
 # isit320-mccann-2016
 
-This is modified
+This is Week10 Branch of Isit320 which include the following:
 
-Another test from home
-
-One more test from home
-
-A test from school
-
-Another test haha
+Express Pages and Mixins
+Express Session Master
+Jade Mixin Basics
