@@ -1,11 +1,9 @@
 # isit320-mccann-2016
+This is Week07 branch of Isit320.
 
-This is modified
+Which includes the following.
 
-Another test from home
-
-One more test from home
-
-A test from school
-
-Another test haha
+Branch Basics.
+Data Master.
+Data Master Refactor.
+Mid Term.
