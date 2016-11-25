@@ -21,4 +21,16 @@ $(document).ready(function() {
             console.log('Could not find selector. This is expected when testing.', e);
         }
     };
+    Main();
+
 });
+
+var Main = (function(){
+    function Main(){
+        $('#mainButton').click(function(){
+           console.log('main button clicked');
+        });
+    }
+
+    return Main;
+})();
