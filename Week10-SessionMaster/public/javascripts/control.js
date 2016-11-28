@@ -28,32 +28,27 @@ $(document).ready(function() {
     $('#viewPage02').click(function() {
         showPage('/views/page02');
     });
-    $('#dataInsertDesign').click(function() {
+    $('#dataInsertDesign, #designDoc').click(function() {
         showPage('/designDoc');
     });
-    $('#dataViewSessions').click(function() {
+    $('#dataViewSessions, #sessionView').click(function() {
         showPage('/viewSessions?designDoc=sessions&view=findAll');
     });
-
     $('#mainBasic').click(function() {
         redirect('/basics-page');
     });
-
     $('#mainDatabase').click(function() {
         showPage('/database-page');
     });
     $('#mainAuthentication').click(function() {
         showPage('/authentication-page');
     });
-
     $('#dataSessionExpires').click(function() {
         showPage('/viewSessions?designDoc=elf-session&view=elfSessionExpires');
     });
-
     $('#fileStore').click(function() {
         showPage('/viewSessions?designDoc=elf-session&view=elfSessionStore');
     });
-
     $('#authLoginStatus').click(function() {
         showPage('/status');
     });
