@@ -15,8 +15,10 @@ $(document).ready(function() {
         if (name.length === 0) { name = 'home'; }
         var selector = '#' + name;
         try {
+            console.log('try called');
             var menuItem1 = $(selector);
             menuItem1.addClass('active');
+
         } catch(e) {
             console.log('Could not find selector. This is expected when testing.', e);
         }
@@ -27,7 +29,7 @@ $(document).ready(function() {
 
 var Main = (function(){
     function Main(){
-        $('#mainButton').click(function(){
+        $('#mainButton').click(function(req, res){
            console.log('main button clicked');
         });
     }

@@ -5,7 +5,8 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
     'use strict';
     res.render('index', {
-        title: 'Week10-PagesAndMixins'
+        title: 'Week10-PagesAndMixins',
+        content: 'this is the home page'
     });
 });
 

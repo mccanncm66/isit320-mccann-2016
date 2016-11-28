@@ -8,7 +8,8 @@ router.get('/', function(req, res){
     console.log('Hello from routes/about');
     res.render('about', {
         title: 'Isit320-McCann',
-        description: 'jquery demo'
+        description: 'jquery demo',
+        content: 'this is the about page'
     });
 });
 

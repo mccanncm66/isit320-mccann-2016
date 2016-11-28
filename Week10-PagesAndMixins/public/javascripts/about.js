@@ -3,9 +3,6 @@ $(document).ready(function() {
     $('.nav li').hover(function(event) {
         setActiveMenuItem(event.currentTarget.id);
     });
-    $('#mainButton').click(function(){
-        console.log('main button clicked');
-    });
 
     function setActiveMenuItem(id) {
 
@@ -33,7 +30,7 @@ var Main = (function(){
         $('#aboutButton').click(function(){
             console.log('main button clicked');
         });
-    }
+    };
 
     return Main;
 })();
