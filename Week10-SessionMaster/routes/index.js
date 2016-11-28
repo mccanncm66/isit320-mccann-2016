@@ -15,6 +15,13 @@ router.get('/', routeParamMiddleware, function(req, res, next) {
     });
 });
 
+router.get('/', routeParamMiddleware, function(req, res, next) {
+    'use strict';
+    res.render('index', {
+        title: 'Week09-SessionMaster'
+    });
+});
+
 var pageReport = function(request, response) {
     'use strict';
     var previousPage = '';
@@ -63,9 +70,30 @@ router.get('/login', function(req, res) {
     });
 });
 
+router.get('/database-page', function(req, res) {
+    'use strict';
+    res.render('database', {
+        title: 'database'
+    });
+});
+
+router.get('/authentication-page', function(req, res) {
+    'use strict';
+    res.render('authentication', {
+        title: 'authentication'
+    });
+});
+
+router.get('/basics-page', function(req, res, next) {
+    'use strict';
+    res.render('basics', {
+        title: 'Basics'
+    });
+});
+
 router.get('/logout', function(request, response) {
     'use strict';
-    request.logout();
+    request.logout('google');
     response.redirect('/');
 });
 

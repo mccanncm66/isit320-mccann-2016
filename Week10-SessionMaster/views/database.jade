@@ -1,0 +1,21 @@
+extends menu-mixin
+include mixins
+
+block append content
+    h1= title
+    p Welcome to #{title}
+
+    +panel('Database', 'default')
+        button.btn.btn-primary#dataInsertDesign Insert Design Doc
+        button.btn.btn-primary#dataViewSessions View Sessions
+        button.btn.btn-primary#dataSessionExpires Session Expires
+        <br>
+        button.btn.btn-primary#dataRequestUser Request User (not implemented)
+        <br>
+        input(style='text')#input
+        <br>
+        button.btn.btn-primary#dataGetDbName Get Database Name
+        button.btn.btn-primary#dataSetDbName Set Database Name
+
+    +panel('Display', 'default')
+        pre#display

@@ -53,12 +53,12 @@ router.get('/google',
 //router.get('/auth/google/callback',
 router.get('/google/callback',
     passport.authenticate('google', {
-        failureRedirect: '/login'
+        failureRedirect: '/authentication-page'
     }),
     function(req, res) {
         'use strict';
         // Successful authentication, redirect home.
-        res.redirect('/');
+        res.redirect('/authentication-page');
     });
 
 module.exports = router;

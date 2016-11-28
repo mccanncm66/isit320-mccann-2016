@@ -28,10 +28,34 @@ $(document).ready(function() {
     $('#viewPage02').click(function() {
         showPage('/views/page02');
     });
-    $('#designDoc').click(function() {
+    $('#dataInsertDesign').click(function() {
         showPage('/designDoc');
     });
-    $('#sessionView').click(function() {
-        showPage('/viewSessions?designDoc=elf-session&view=elfSessions');
+    $('#dataViewSessions').click(function() {
+        showPage('/viewSessions?designDoc=sessions&view=findAll');
     });
+
+    $('#mainBasic').click(function() {
+        redirect('/basics-page');
+    });
+
+    $('#mainDatabase').click(function() {
+        showPage('/database-page');
+    });
+    $('#mainAuthentication').click(function() {
+        showPage('/authentication-page');
+    });
+
+    $('#dataSessionExpires').click(function() {
+        showPage('/viewSessions?designDoc=elf-session&view=elfSessionExpires');
+    });
+
+    $('#fileStore').click(function() {
+        showPage('/viewSessions?designDoc=elf-session&view=elfSessionStore');
+    });
+
+    $('#authLoginStatus').click(function() {
+        showPage('/status');
+    });
+
 });

@@ -6,7 +6,7 @@ function views(router, nano, dbName) {
         var nanoDb = nano.db.use(dbName);
         nanoDb.view(request.query.designDoc, request.query.view, function(err, body) {
             if (!err) {
-                console.log(body);
+                console.log(body.session);
                 response.send(body);
             } else {
                 console.log(err);

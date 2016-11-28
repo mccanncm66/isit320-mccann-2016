@@ -9,6 +9,7 @@
   "dependencies": {
     "body-parser": "~1.15.1",
     "connect-couchdb": "^1.0.0",
+    "connect-ensure-login": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "couchdb": "^0.3.8",
     "cradle": "^0.7.1",

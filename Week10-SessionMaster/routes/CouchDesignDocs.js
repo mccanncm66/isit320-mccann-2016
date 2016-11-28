@@ -21,20 +21,20 @@ function designDocs(router, nano, dbName) {
     };
 
     var elfSessions = function(doc) {
-        if (doc.type === 'connect-session') {
+        console.log('**********************************' + doc.type);
+        console.log('**********************************' + doc.collectionName);
+        if (doc.type === 'connect-session' || doc.collectionName === 'sessions') {
             emit(doc._id, doc);
         }
     };
 
     var elfSessionStore = function(doc) {
-        if (doc.collectionName === 'sessions' && doc.expires){
+        if (doc.collectionName === 'sessions' && doc.expires) {
             emit(doc._id, doc);
         }
-        // if the doc **collectionName** property equals **'sessions'** then emit the **doc._id** and the **doc** itself.
     };
 
-    var elfSessionExpires = function (doc) {
-        // if the doc **collectionName** property equals **'sessions'** and **doc.expires exists** then emit the **doc.expires**.
+    var elfSessionExpires = function(doc) {
         if (doc.collectionName === 'sessions' && doc.expires) {
             emit(doc.expires);
         }
@@ -64,7 +64,7 @@ function designDocs(router, nano, dbName) {
                 'elfSessions': {
                     'map': elfSessions
                 },
-                'elfSessionStore' : {
+                'elfSessionStore': {
                     'map': elfSessionStore
                 },
                 'elfSessionExpires': {

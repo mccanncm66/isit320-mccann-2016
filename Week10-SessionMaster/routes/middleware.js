@@ -32,7 +32,6 @@ servers = ['168.156.47.122',
     '168.156.47.122'
 ];
 
-
 var sessionStore = sessionstore.createSessionStore({
     type: 'couchdb',
     host: servers[1], // optional
@@ -41,56 +40,9 @@ var sessionStore = sessionstore.createSessionStore({
     collectionName: 'sessions', // optional
     timeout: 10000 // optional
 }, function(data) {
+    'use strict';
     console.log('sessionStore callback', data);
 });
-
-/*var couchStore = new ConnectCouchDB({
-    // Name of the database you would like to use for sessions.
-    name: 'couch-session-mccann',
-
-    // Optional. Database connection details. See yacw documentation
-    // for more informations
-    //username: 'username',
-    //password: 'password',
-
-    host: servers[1],
-
-    // Optional. How often expired sessions should be cleaned up.
-    // Defaults to 600000 (10 minutes).
-    reapInterval: 600000,
-
-    // Optional. How often to run DB compaction against the session
-    // database. Defaults to 300000 (5 minutes).
-    // To disable compaction, set compactInterval to -1
-    compactInterval: 300000,
-
-    // Optional. How many time between two identical session store
-    // Defaults to 60000 (1 minute)
-    setThrottle: 60000
-});*/
-
-/*******END COUCH SESSION******/
-
-/*router.use(session({
-    genid: function(req) {
-        'use strict';
-        return uuid.v4(); // use UUIDs for session IDs
-    },
-    secret: process.env.SESSION_SECRET || 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
-}));*/
-
-/*router.use(session({
-    genid: function(req) {
-        'use strict';
-        return uuid.v4(); // use UUIDs for session IDs
-    },
-    secret: process.env.SESSION_SECRET || 'keyboard cat',
-    resave: true,
-    saveUninitialized: true,
-    store: couchStore
-}));*/
 
 router.use(session({
     genid: function(req) {
