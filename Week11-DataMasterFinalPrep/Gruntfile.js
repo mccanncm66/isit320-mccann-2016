@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         },
 
         jscs: {
-            src: ['**/*.js', '!spec/bitly-links.js'],
+            src: '**/*.js',
             options: {
                 config: '.jscsrc'
             }
@@ -38,12 +38,20 @@ module.exports = function(grunt) {
             }
         },
 
+        karma: {
+            karma: {
+                configFile: 'karma.conf.js'
+            }
+        }
+
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-jscs');
     grunt.loadNpmTasks('grunt-jsbeautifier');
+    grunt.loadNpmTasks('grunt-karma');
     grunt.registerTask('beautify', ['jsbeautifier']);
     grunt.registerTask('check', ['beautify', 'jscs', 'jshint']);
+    grunt.registerTask('test', ['jshint', 'karma']);
 };
