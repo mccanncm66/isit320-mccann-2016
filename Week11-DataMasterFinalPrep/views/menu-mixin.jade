@@ -2,29 +2,19 @@ extends layout
 
 block content
 
-    nav.navbar.navbar-default.navbar-fixed-top
-        .container-fluid
-            // Brand
-            .navbar-header
-                button.navbar-toggle.collapsed(type='button',
-                data-toggle='collapse',
-                data-target='#bs-example-navbar-collapse-1',
-                aria-expanded='false')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-
-                a.navbar-brand(href='/')
-                    img(alt='Elvenware', src='favicon.png')
-            // Nav Links
-            #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                ul.nav.navbar-nav
-                    li#basics-menu
-                        a.togglePageClick(href='/basics-page')
-                            | Basics
-                            span.sr-only (current)
-                    li#database-menu
-                        a.togglePageClick(href="/database-page") Database
-                    li#authentication-menu
-                        a.togglePageClick(href="/authentication-page") Authentication
+    .header
+        +nav("Prog272 Midterm", "navigationbar", "navbar-default navbar-fixed-top")
+            +nav_item( "/", "home", "active" ) Home
+            +nav_item( "passport-page", "passport-page") Passport Status
+            +nav_item_dropdown("#")( label="Database Status" )
+                +nav_item(href="database-names") Database Names
+                +nav_item("database-create") Create Database
+                +nav_item("database-delete") Delete Database
+            +nav_item_dropdown( "#" )( label="Dropdown" )
+                +nav_item( "#" ) Action
+                +nav_item( "#" ) Another action
+                +nav_item( "#" ) Something else here
+                +nav_divider
+                +nav_header Nav header
+                +nav_item( "#" ) Separated link
+                +nav_item( "#" ) One more separated link

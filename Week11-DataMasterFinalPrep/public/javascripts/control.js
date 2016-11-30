@@ -93,6 +93,12 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
             resolve: {
                 result: queryController.viewOneDoc
             }
+        }).when('/passport-page', {
+            templateUrl: 'templates/QueryView.html',
+            controller: queryController,
+            resolve: {
+                result: queryController.viewOneDoc
+            }
         }).otherwise({
             redirectTo: '/'
         });
