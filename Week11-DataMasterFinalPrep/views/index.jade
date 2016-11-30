@@ -1,6 +1,7 @@
-extends layout
+extends menu-mixin
+include mixins
 
-block content
+block append content
   h1= title
   p 
     | Welcome to #{title}. Click the options below, and if necessary 
@@ -27,25 +28,12 @@ block content
           a(href="viewNpcsBulk") View NPCs Bulk documents
         li
           a(href="viewNpcsOneDoc") View NPCs One document
-    
-  h1 Should we template on both ends?
-  
-  p
-    | In the examples below we use templating on the server side with Handlebars.
-    | Handlebars is a great library, but some say we should not mix it with Angular as I 
-    | do below. When we do, the app <strong>may</strong> hang after these calls. 
-    | If you have problems, use the technique shown in "Angular View Bulk Doc" 
-    | and "Angular View States Capital" above. 
-  ul 
-    li
-      a(href="/viewBulkTemplate?designDoc=states&view=docBulk") Template States Bulk
-    li
-      a(href="/viewStateCapitalTemplate?designDoc=states&view=docStateCapital") Template State Capital
- div#elfContent
+
+  div#elfContent
 
   pre#debug
 
-  pre#docs
+  div#docs
 
   div
     div(data-ng-view='')

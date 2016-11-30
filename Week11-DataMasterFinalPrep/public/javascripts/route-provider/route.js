@@ -13,16 +13,19 @@ define(['runQuery'], function(runQuery) {
     }
 
     Route.prototype.setRoute = function(routeInit) {
+        console.log('Setting Route.setRoute to ' + routeInit);
         this.route = routeInit;
     };
 
     function root(control) {
+        console.log('Calling root inside Route');
         $('#elfContent').load(control.templateUrl, function(result) {
             that.resolveRequest(control)
         });
     }
 
     Route.prototype.resolveRequest = function(control) {
+        console.log('Calling Route.resolveRequest')
         var resolver = {
             getController: function() {
                 return control.controller;
@@ -39,6 +42,7 @@ define(['runQuery'], function(runQuery) {
     };
 
     Route.prototype.when = function(route, control) {
+        console.log('Calling Route.when with route ' + route);
         if (route === this.route) {
             if (control.templateUrl) {
                 root(control)

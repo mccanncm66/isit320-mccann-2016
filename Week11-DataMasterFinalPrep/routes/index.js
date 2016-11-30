@@ -8,4 +8,12 @@ router.get('/', function(req, res) {
     });
 });
 
+router.get('/:id', function(request, response) {
+    'use strict';
+    console.log('Requested: ', request.params.id);
+    response.render(request.params.id, {
+        title: request.params.id
+    });
+});
+
 module.exports = router;

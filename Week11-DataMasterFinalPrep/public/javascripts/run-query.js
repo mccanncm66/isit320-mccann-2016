@@ -6,13 +6,13 @@ define(function(require) {
         //'use strict';
         var controller = $q.getController();
         $.getJSON(query, function(json) {
-            console.log('run-query called');
+/*            console.log('run-query called');
             console.log('query requested');
             console.log(query);
             console.log('json data');
             console.log(json);
             console.log('controller');
-            console.log(controller);
+            console.log(controller);*/
             controller(query, json);
         }).fail(function(jqxhr, textStatus, error) {
             var response = {

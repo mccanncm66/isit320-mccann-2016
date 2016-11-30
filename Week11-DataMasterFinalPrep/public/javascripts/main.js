@@ -15,8 +15,10 @@ requirejs.config({
         'control': 'javascripts/control',
         'nameController': 'javascripts/name-controller',
         'queryController': 'javascripts/query-controller',
-        'Route': 'javascripts/route',
-        'runQuery': 'javascripts/run-query'
+        'Route': 'javascripts/route-provider/route',
+        'runQuery': 'javascripts/route-provider/run-query',
+        'jsonToHtml': '/components/elf-json-to-table/json-to-table',
+        'utility': 'javascripts/utility'
     }
 });
 

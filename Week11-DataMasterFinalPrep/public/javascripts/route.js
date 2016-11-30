@@ -10,12 +10,13 @@ define(function() {
     }
 
     Route.prototype.setRoute = function(routeInit) {
+        console.log('Setting Route to ' + routeInit);
         this.route = routeInit;
     };
 
     Route.prototype.when = function(route, control) {
         if (route === this.route) {
-            console.log('route called');
+            console.log('Route.when calling route ' + route);
             var resolver = {
                 getController: function() {
                     return control.controller;
@@ -31,6 +32,7 @@ define(function() {
 
     Route.prototype.otherwise = function() {
         // DO NOTHING FOR NOW
+        console.log('Route.otherwise being called');
     };
 
     return Route;
