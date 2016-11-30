@@ -94,10 +94,10 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
                 result: queryController.viewOneDoc
             }
         }).when('/passport-page', {
-            templateUrl: 'templates/QueryView.html',
-            controller: queryController,
+            templateUrl: 'templates/passport-page.jade',
+            controller: nameController,
             resolve: {
-                result: queryController.viewOneDoc
+                result: nameController.allDbs
             }
         }).otherwise({
             redirectTo: '/'

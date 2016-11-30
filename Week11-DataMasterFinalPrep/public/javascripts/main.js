@@ -36,7 +36,7 @@ requirejs(['jquery'], function($) {
              * Call findRoutes and pass in Routes object
              *   findRoutes calls route.when for each possible path
              */
-            $('#databaseOptions ul li a').click(function(event) {
+            $('#databaseOptions, #navigationbar, ul, li, a').click(function(event) {
                 event.preventDefault();
                 route.setRoute(event.target.pathname);
                 control(route);

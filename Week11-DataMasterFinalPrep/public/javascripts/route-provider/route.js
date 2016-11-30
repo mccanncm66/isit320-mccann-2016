@@ -42,8 +42,8 @@ define(['runQuery'], function(runQuery) {
     };
 
     Route.prototype.when = function(route, control) {
-        console.log('Calling Route.when with route ' + route);
         if (route === this.route) {
+            console.log('Calling Route.when with route ' + route);
             if (control.templateUrl) {
                 root(control)
             } else {

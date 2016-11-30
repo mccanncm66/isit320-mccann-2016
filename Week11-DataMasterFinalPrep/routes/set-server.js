@@ -8,4 +8,6 @@ var serverIndex = 4;
 var serverUrl = servers[serverIndex];
 console.log('Middleware attaching to database on: ', serverUrl);
 
+
+
 module.exports.serverUrl = serverUrl;
