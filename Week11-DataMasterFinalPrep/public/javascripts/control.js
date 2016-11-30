@@ -93,8 +93,8 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
             resolve: {
                 result: queryController.viewOneDoc
             }
-        }).when('/passport-page', {
-            templateUrl: 'templates/passport-page.jade',
+        }).when('/database-names', {
+            templateUrl: 'templates/database-names.jade',
             controller: nameController,
             resolve: {
                 result: nameController.allDbs
