@@ -13,8 +13,8 @@ requirejs.config({
         'foo': 'javascripts/foo',
         'jquery': 'components/jquery/dist/jquery',
         'control': 'javascripts/control',
-        'nameController': 'javascripts/name-controller',
-        'queryController': 'javascripts/query-controller',
+        'nameController': 'javascripts/controllers/name-controller',
+        'queryController': 'javascripts/controllers/query-controller',
         'Route': 'javascripts/route-provider/route',
         'runQuery': 'javascripts/route-provider/run-query',
         'jsonToHtml': '/components/elf-json-to-table/json-to-table',
@@ -25,7 +25,7 @@ requirejs.config({
 requirejs(['jquery'], function($) {
     'use strict';
 
-    requirejs(['Route', 'control'], function(Route, control) {
+    requirejs(['Route', 'control', 'utility'], function(Route, control, utils) {
         $(document).ready(function() {
 
             var route = new Route();
@@ -36,8 +36,17 @@ requirejs(['jquery'], function($) {
              * Call findRoutes and pass in Routes object
              *   findRoutes calls route.when for each possible path
              */
-            $('#databaseOptions, #navigationbar, ul, li, a').click(function(event) {
+/*            $('#databaseOptions, #navigationbar, ul, li, a').click(function(event) {
                 event.preventDefault();
+                console.log('In main');
+                route.setRoute(event.target.pathname);
+                control(route);
+            });*/
+
+            $('#navigationbar').click(function(event) {
+                utils.clearAll();
+                event.preventDefault();
+                console.log('In main');
                 route.setRoute(event.target.pathname);
                 control(route);
             });

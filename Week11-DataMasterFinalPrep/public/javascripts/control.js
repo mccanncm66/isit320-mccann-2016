@@ -27,23 +27,11 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
             resolve: {
                 result: queryController.create
             }
-        }).when('/insertStatesBulk', {
-            templateUrl: 'templates/States.html',
-            controller: queryController,
-            resolve: {
-                result: queryController.statesBulk
-            }
         }).when('/insertNpcsBulk', {
             templateUrl: 'templates/States.html',
             controller: queryController,
             resolve: {
                 result: queryController.insertNpcsBulk
-            }
-        }).when('/insertStatesOneDoc', {
-            templateUrl: 'templates/States.html',
-            controller: 'QueryController',
-            resolve: {
-                result: queryController.statesOneDoc
             }
         }).when('/insertNpcsOneDoc', {
             templateUrl: 'templates/States.html',
@@ -98,6 +86,18 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
             controller: nameController,
             resolve: {
                 result: nameController.allDbs
+            }
+        }).when('/database-create', {
+            templateUrl: 'templates/database-create.jade',
+            controller: queryController,
+            resolve: {
+                result: queryController.create
+            }
+        }).when('/database-delete', {
+            templateUrl: 'templates/database-delete.jade',
+            controller: queryController,
+            resolve: {
+                result: queryController.delete
             }
         }).otherwise({
             redirectTo: '/'

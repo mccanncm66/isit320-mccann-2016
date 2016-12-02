@@ -25,19 +25,21 @@ define(['runQuery'], function(runQuery) {
     }
 
     Route.prototype.resolveRequest = function(control) {
-        console.log('Calling Route.resolveRequest')
-        var resolver = {
-            getController: function() {
-                return control.controller;
-            }
-        };
+        if (control) {
+            console.log('Calling Route.resolveRequest')
+            var resolver = {
+                getController: function () {
+                    return control.controller;
+                }
+            };
 
-        if (control.resolve) {
-            for (var funcName in control.resolve) {
-                control.resolve[funcName](resolver);
+            if (control.resolve) {
+                for (var funcName in control.resolve) {
+                    control.resolve[funcName](resolver);
+                }
+            } else {
+                runQuery(null, resolver)
             }
-        } else {
-            runQuery(null, resolver)
         }
     };
 

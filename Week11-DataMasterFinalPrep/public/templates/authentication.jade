@@ -1,0 +1,19 @@
+extends menu-mixin
+include mixins
+
+block append content
+    h1= title
+    p Welcome to #{title}
+
+    +panel('Authentication', 'default')
+
+        button.btn.btn-primary#authLoginStatus Login Status
+        <br>
+        a(href='/logout')
+            button.btn.btn-primary#authLogout Logout
+        a(href='/auth/google')
+            button.btn.btn-primary#authLoginPage Login Page
+
+
+    +panel('Display', 'default')
+        pre#display

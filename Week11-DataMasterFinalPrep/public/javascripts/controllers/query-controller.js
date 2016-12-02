@@ -1,9 +1,13 @@
-define(['runQuery'], function(runQuery) {
+define(['runQuery', 'utility'], function(runQuery, utility) {
     'use strict';
     var queryController = function(query, result) {
         //'use strict';
         var $scope = $('#debug');
         var docs = $('#docs');
+        if(query.requestFailed) {
+            utility.failed(query.requestFailed);
+            return;
+        }
         docs.empty();
         if (result.ok) {
             $scope.result = 'It worked';
@@ -23,6 +27,8 @@ define(['runQuery'], function(runQuery) {
         } else {
             docs.html('ERROR!');
         }
+
+
         //docs.html('YOUR CODE HERE PUTS INFO IN docs');
     };
 
