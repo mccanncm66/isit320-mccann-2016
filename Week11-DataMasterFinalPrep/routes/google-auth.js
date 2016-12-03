@@ -44,15 +44,15 @@ passport.use(new GoogleStrategy({
 
         'use strict';
         console.log('***********');
-        console.log(request);
+        //console.log(request);
         console.log('***********');
-        console.log(accessToken);
+        //console.log(accessToken);
         console.log('***********');
-        console.log(refreshToken);
+        //console.log(refreshToken);
         console.log('***********');
         console.log(profile);
         console.log('***********');
-        console.log(done);
+        //console.log(done);
         console.log('***********');
         // asynchronous verification, for effect...
         process.nextTick(function() {
@@ -72,13 +72,13 @@ router.get('/google',
 //router.get('/auth/google/callback',
 router.get('/google/callback',
     passport.authenticate('google', {
-        failureRedirect: '/authentication-page'
+        failureRedirect: '/login'
     }),
     function(req, res) {
         'use strict';
         console.log('successful authentication');
         // Successful authentication, redirect home.
-        res.redirect('/authentication-page');
+        res.redirect('/');
     });
 
 module.exports = router;

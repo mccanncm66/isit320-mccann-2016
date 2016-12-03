@@ -12,7 +12,7 @@ requirejs.config({
     paths: {
         'foo': '/javascripts/foo',
         'jquery': '/components/jquery/dist/jquery',
-        'control': 'javascripts/control',
+        'control': '/javascripts/control',
         'nameController': '/javascripts/controllers/name-controller',
         'queryController': '/javascripts/controllers/query-controller',
         'passportController': '/javascripts/controllers/passport-controller',
@@ -30,6 +30,17 @@ requirejs(['jquery'], function($) {
         $(document).ready(function() {
 
             var route = new Route();
+            var handleClicks = function(event) {
+                event.preventDefault();
+                route.setRoute(event.target.pathname);
+                control(route);
+            };
+            $('#navigationbar').addClass('databaseOptions');
+            $('#main-content').load('/menu-links', function() {
+                $('.databaseOptions ul li a').click(function(event) {
+                    handleClicks(event);
+                });
+            });
             /*
              * User clicks control
              * Create Route

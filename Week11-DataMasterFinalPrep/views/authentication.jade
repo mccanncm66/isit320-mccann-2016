@@ -7,13 +7,13 @@ block append content
 
     +panel('Authentication', 'default')
         a(href='/status')
-            button.btn.btn-primary#authLoginStatus Login Status
+            button.btn.btn-primary#authLoginStatus Google Login Status
         <br>
         a(href='/logout')
-            button.btn.btn-primary#authLogout Logout
+            button.btn.btn-primary#authLogout Google Logout
         a(href='/auth/google')
-            button.btn.btn-primary#authLoginPage Login Page
+            button.btn.btn-primary#authLoginPage Google Login
 
 
-    +panel('Display', 'default')
+    +panel('Login Status', 'default')
         pre#display

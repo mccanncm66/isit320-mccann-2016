@@ -1,5 +1,6 @@
-var router = require('./Couch');
-
+var express = require('express');
+var router = express.Router();
+var passport = require('passport');
 /* GET home page. */
 router.get('/', function(req, res) {
     'use strict';
@@ -7,6 +8,16 @@ router.get('/', function(req, res) {
     res.render('index', {
         title: 'Data Master Final Prep'
     });
+});
+
+passport.serializeUser(function(user, done) {
+    'use strict';
+    done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+    'use strict';
+    done(null, obj);
 });
 router.get('/logout', function(request, response) {
     'use strict';

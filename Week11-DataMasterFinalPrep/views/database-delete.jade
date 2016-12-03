@@ -3,3 +3,25 @@ include mixins
 
 block append content
     h1 Delete Database
+    div.databaseOptions
+        ul
+            li
+                a(href='databaseName') Get current Database Name
+            li
+                a(href='createDb') CreateDb
+            li
+                a(href='deleteDb') DeleteDb
+        ul
+            li
+                a(href='insertNpcsBulk') Insert NPCs Bulk
+            li
+                a(href='insertNpcsOneDoc') Insert NPCs as one document
+            li
+                a(href="insertDesignDoc") Insert Design Doc
+        ul
+            li
+                a(href="readOne") Read One Doc
+            li
+                a(href="viewNpcsBulk") View NPCs Bulk documents
+            li
+                a(href="viewNpcsOneDoc") View NPCs One document
