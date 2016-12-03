@@ -1,6 +1,12 @@
 define(['runQuery', 'utility'], function(runQuery, utility) {
     'use strict';
     var queryController = function(query, result) {
+
+        utility.clearAll();
+        if (query.requestFailed) {
+            utility.failed(query.requestFailed);
+            return;
+        }
         //'use strict';
         var $scope = $('#debug');
         var docs = $('#docs');
@@ -42,9 +48,9 @@ define(['runQuery', 'utility'], function(runQuery, utility) {
         return runQuery('/createDb', $q);
     };
 
-    queryController.insertNpcsBulk = function($q) {
-        //'use strict';
-        return runQuery('/insertBulk?fileName=Npcs.json', $q);
+    queryController.insertGameData = function($q) {
+        'use strict';
+        return runQuery('/insertBulk?fileName=GameData.json', $q);
     };
 
     queryController.insertStatesBulk = function($q) {

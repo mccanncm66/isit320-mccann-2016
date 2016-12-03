@@ -6,7 +6,7 @@ block append content
   p 
     | Welcome to #{title}. Click the options below, and if necessary 
     | scroll down to see the results.
-    div#databaseOptions
+    div.databaseOptions
       ul
         li
           a(href='databaseName') Get current Database Name
@@ -29,8 +29,10 @@ block append content
         li
           a(href="viewNpcsOneDoc") View NPCs One document
 
-  +panel('Table', 'default')
+  +panel('Content', 'default')
     div#elfContent
+
+  +panel('Table', 'default')
     div#myTable
 
   pre#debug

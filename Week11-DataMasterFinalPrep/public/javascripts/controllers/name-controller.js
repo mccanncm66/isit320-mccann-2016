@@ -17,7 +17,6 @@ define(['runQuery', 'utility', 'jsonToHtml'], function(runQuery, utility, jsonTo
             docs.html('allDatabases: ' + displayData);
             var jsonHtmlTable = jsonToHtml(JSON.parse(displayData), 'jsonTable', 'table table-bordered table-striped', 'Download');
             $('#myTable').html(jsonHtmlTable);
-
         }
     };
 
@@ -27,6 +26,10 @@ define(['runQuery', 'utility', 'jsonToHtml'], function(runQuery, utility, jsonTo
 
     nameController.allDbs = function($q) {
         return runQuery('/listDb', $q);
+    };
+
+    nameController.render = function ($q) {
+        return runQuery('/authentication', $q);
     };
 
     return nameController;

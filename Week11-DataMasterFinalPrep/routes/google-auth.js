@@ -28,6 +28,12 @@ router.get('/account', ensureAuthenticated, function(request, response) {
     });
 });
 
+router.get('/logout', function(request, response) {
+    'use strict';
+    request.logout('google');
+    response.redirect('/');
+});
+
 passport.use(new GoogleStrategy({
         clientID: '1036854361807-kmktafn5nva9dibaqrokt8q8l7g2e2bh.apps.googleusercontent.com',
         clientSecret: 'q4C8sLOr4u_OiuiMsOFG1ySS',
@@ -57,6 +63,7 @@ router.get('/google/callback',
     }),
     function(req, res) {
         'use strict';
+        console.log('successful authentication');
         // Successful authentication, redirect home.
         res.redirect('/authentication-page');
     });

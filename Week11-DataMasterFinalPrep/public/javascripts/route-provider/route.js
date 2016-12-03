@@ -57,7 +57,7 @@ define(['runQuery'], function(runQuery) {
 
     Route.prototype.otherwise = function() {
         // DO NOTHING FOR NOW
-        console.log('otherwise');
+        console.log('Route.otherwise');
     };
 
     return Route;

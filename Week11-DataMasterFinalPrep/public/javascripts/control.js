@@ -1,9 +1,5 @@
-/**
- * @name Control
- */
 
-//var myModule = angular.module('myModule', ['ngRoute']);
-define(['Route', 'nameController', 'queryController'], function(Route, nameController, queryController) {
+define(['Route', 'nameController', 'queryController', 'passportController'], function(Route, nameController, queryController, passportController) {
     'use strict';
 
     function findRoutes($routeProvider) {
@@ -82,22 +78,46 @@ define(['Route', 'nameController', 'queryController'], function(Route, nameContr
                 result: queryController.viewOneDoc
             }
         }).when('/database-names', {
-            templateUrl: 'templates/database-names.jade',
+            templateUrl: '/database-names',
             controller: nameController,
             resolve: {
                 result: nameController.allDbs
             }
         }).when('/database-create', {
-            templateUrl: 'templates/database-create.jade',
+            templateUrl: '/database-create',
             controller: queryController,
             resolve: {
                 result: queryController.create
             }
         }).when('/database-delete', {
-            templateUrl: 'templates/database-delete.jade',
+            templateUrl: '/database-delete',
             controller: queryController,
             resolve: {
                 result: queryController.delete
+            }
+        }).when('/authentication', {
+            templateUrl: '/authentication',
+            controller: passportController,
+            resolve: {
+                result: passportController.login
+            }
+        }).when('/status', {
+            templateUrl: '/status-page',
+            controller: passportController,
+            resolve: {
+                result: passportController.login
+            }
+        }).when('/database-insert-design-doc', {
+            templateUrl: 'templates/QueryView.html',
+            controller: queryController,
+            resolve: {
+                result: queryController.design
+            }
+        }).when('/database-insert-data', {
+            templateUrl: 'templates/States.html',
+            controller: 'QueryController',
+            resolve: {
+                result: queryController.insertGameData
             }
         }).otherwise({
             redirectTo: '/'

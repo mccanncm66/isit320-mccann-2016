@@ -1,4 +1,4 @@
-extends menu-mixin
+
 include mixins
 
 block append content
@@ -6,8 +6,8 @@ block append content
     p Welcome to #{title}
 
     +panel('Authentication', 'default')
-
-        button.btn.btn-primary#authLoginStatus Login Status
+        a(href='/status')
+            button.btn.btn-primary#authLoginStatus Login Status
         <br>
         a(href='/logout')
             button.btn.btn-primary#authLogout Logout

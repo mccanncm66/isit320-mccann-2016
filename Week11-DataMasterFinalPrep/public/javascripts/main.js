@@ -15,6 +15,7 @@ requirejs.config({
         'control': 'javascripts/control',
         'nameController': 'javascripts/controllers/name-controller',
         'queryController': 'javascripts/controllers/query-controller',
+        'passportController': 'javascripts/controllers/passport-controller',
         'Route': 'javascripts/route-provider/route',
         'runQuery': 'javascripts/route-provider/run-query',
         'jsonToHtml': '/components/elf-json-to-table/json-to-table',

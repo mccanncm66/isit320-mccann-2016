@@ -1,20 +1,20 @@
 extends layout
 
 block content
-
-    .header
-        +nav("Isit320 DataMasterFinalPrep", "navigationbar", "navbar-default navbar-fixed-top")
-            +nav_item( "/", "home", "active" ) Home
-            +nav_item( "/authentication") Passport Status
-            +nav_item_dropdown("#")( label="Database Status" )
-                +nav_item("database-names") Database Names
-                +nav_item("database-create") Create Database
-                +nav_item("database-delete") Delete Database
-            +nav_item_dropdown( "#" )( label="Database Insert" )
-                +nav_item( "#" ) Action
-                +nav_item( "#" ) Another action
-                +nav_item( "#" ) Something else here
-                +nav_divider
-                +nav_header Nav header
-                +nav_item( "#" ) Separated link
-                +nav_item( "#" ) One more separated link
+    div#main-content
+        .header
+            +nav("Isit320 DataMasterFinalPrep", "navigationbar", "navbar-default navbar-fixed-top")
+                +nav_item( "/", "home", "active" ) Home
+                +nav_item( "authentication") Passport Status
+                +nav_item_dropdown("#")( label="Database Status" )
+                    +nav_item("database-names") Database Names
+                    +nav_item("database-create") Create Database
+                    +nav_item("database-delete") Delete Database
+                +nav_item_dropdown( "#" )( label="Database Insert" )
+                    +nav_item( "database-insert-data" ) Insert Data
+                    +nav_item( "database-insert-design-doc" ) Insert Design Doc
+                    +nav_item( "#" ) Something else here
+                    +nav_divider
+                    +nav_header Nav header
+                    +nav_item( "#" ) Separated link
+                    +nav_item( "#" ) One more separated link
