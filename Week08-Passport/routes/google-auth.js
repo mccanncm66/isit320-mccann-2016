@@ -38,7 +38,7 @@ passport.use(new GoogleStrategy({
         'use strict';
         // asynchronous verification, for effect...
         process.nextTick(function() {
-
+        console.log('*****************');
             // Return Google profile for now. We will add Database data here later.
             return done(null, profile);
         });

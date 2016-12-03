@@ -41,9 +41,22 @@ passport.use(new GoogleStrategy({
         passReqToCallback: true
     },
     function(request, accessToken, refreshToken, profile, done) {
+
         'use strict';
+        console.log('***********');
+        console.log(request);
+        console.log('***********');
+        console.log(accessToken);
+        console.log('***********');
+        console.log(refreshToken);
+        console.log('***********');
+        console.log(profile);
+        console.log('***********');
+        console.log(done);
+        console.log('***********');
         // asynchronous verification, for effect...
         process.nextTick(function() {
+            console.log('***********');
 
             // Return Google profile for now. We will add Database data here later.
             return done(null, profile);

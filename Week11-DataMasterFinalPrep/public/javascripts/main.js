@@ -10,16 +10,16 @@
 requirejs.config({
     baseUrl: '.',
     paths: {
-        'foo': 'javascripts/foo',
-        'jquery': 'components/jquery/dist/jquery',
+        'foo': '/javascripts/foo',
+        'jquery': '/components/jquery/dist/jquery',
         'control': 'javascripts/control',
-        'nameController': 'javascripts/controllers/name-controller',
-        'queryController': 'javascripts/controllers/query-controller',
-        'passportController': 'javascripts/controllers/passport-controller',
-        'Route': 'javascripts/route-provider/route',
-        'runQuery': 'javascripts/route-provider/run-query',
+        'nameController': '/javascripts/controllers/name-controller',
+        'queryController': '/javascripts/controllers/query-controller',
+        'passportController': '/javascripts/controllers/passport-controller',
+        'Route': '/javascripts/route-provider/route',
+        'runQuery': '/javascripts/route-provider/run-query',
         'jsonToHtml': '/components/elf-json-to-table/json-to-table',
-        'utility': 'javascripts/utility'
+        'utility': '/javascripts/utility'
     }
 });
 
