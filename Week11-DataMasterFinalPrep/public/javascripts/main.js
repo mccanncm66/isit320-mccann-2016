@@ -31,13 +31,18 @@ requirejs(['jquery'], function($) {
 
             var route = new Route();
             var handleClicks = function(event) {
+                console.log('inside handleClicks');
                 event.preventDefault();
                 route.setRoute(event.target.pathname);
                 control(route);
             };
+
+
+
             $('#navigationbar').addClass('databaseOptions');
             $('#main-content').load('/menu-links', function() {
                 $('.databaseOptions ul li a').click(function(event) {
+                    console.log('calling click on:' + event);
                     handleClicks(event);
                 });
             });
@@ -48,20 +53,22 @@ requirejs(['jquery'], function($) {
              * Call findRoutes and pass in Routes object
              *   findRoutes calls route.when for each possible path
              */
-/*            $('#databaseOptions, #navigationbar, ul, li, a').click(function(event) {
+            $('#databaseOptions, #navigationbar, ul, li, a').click(function(event) {
                 event.preventDefault();
                 console.log('In main');
                 route.setRoute(event.target.pathname);
                 control(route);
-            });*/
-
+            });
+/*
             $('#navigationbar').click(function(event) {
                 utils.clearAll();
                 event.preventDefault();
                 console.log('In main');
                 route.setRoute(event.target.pathname);
                 control(route);
-            });
+            });*/
+
+
 
         });
     });
