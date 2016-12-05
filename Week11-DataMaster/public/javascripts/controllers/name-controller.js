@@ -15,7 +15,8 @@ define(['runQuery', 'jsonToHtml', 'utils'], function(runQuery, jsonToHtml, utili
             }
             docs.html(dbList);
             docs.html('allDatabases: ' + dbList);
-            var jsonHtmlTable = jsonToHtml(JSON.parse(displayData), 'jsonTable', 'table table-bordered table-striped', 'Download');
+            var jsonHtmlTable = jsonToHtml(JSON.parse(displayData),
+                'jsonTable', 'table table-bordered table-striped', 'Download');
             $('#myTable').html(jsonHtmlTable);
         }
         // YOU WRITE THE REST OF THE CODE

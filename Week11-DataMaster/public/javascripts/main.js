@@ -32,13 +32,13 @@ requirejs(['jquery'], function($) {
 
             var route = new Route();
 
-/*             $('#navigationbar').click(function(event) {
-             //utils.clearAll();
-             event.preventDefault();
-             console.log('In main');
-             route.setRoute(event.target.pathname);
-             control(route);
-             });*/
+            /*             $('#navigationbar').click(function(event) {
+                         //utils.clearAll();
+                         event.preventDefault();
+                         console.log('In main');
+                         route.setRoute(event.target.pathname);
+                         control(route);
+                         });*/
             /*
              * User clicks control
              * Create Route
@@ -46,11 +46,11 @@ requirejs(['jquery'], function($) {
              * Call findRoutes and pass in Routes object
              *   findRoutes calls route.when for each possible path
              */
-/*            $('#databaseOptions ul li a').click(function(event) {
-                event.preventDefault();
-                route.setRoute(event.target.pathname);
-                control(route);
-            });*/
+            /*            $('#databaseOptions ul li a').click(function(event) {
+                            event.preventDefault();
+                            route.setRoute(event.target.pathname);
+                            control(route);
+                        });*/
 
             var handleClicks = function(event) {
                 event.preventDefault();

@@ -5,7 +5,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
         try {
             var output = result.data[0].result;
             return output;
-        } catch(e){
+        } catch (e) {
             //Do nothing
         }
 
@@ -23,7 +23,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
             docs.empty();
             console.log(result);
             if (result.ok) {
-                if(getResult(result) === 'Database created') {
+                if (getResult(result) === 'Database created') {
                     docs.html('Database successfully created.');
                 } else if (getResult(result) === 'Database deleted') {
                     docs.html('Database successfully deleted.');
@@ -44,7 +44,8 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
                 console.log(result);
                 $scope.html = result._id;
                 var oneDoc = JSON.stringify(result.docs, null, 4);
-                var jsonHtmlTable = jsonToHtml(JSON.parse(oneDoc), 'jsonTable', 'table table-bordered table-striped', 'Download');
+                var jsonHtmlTable = jsonToHtml(JSON.parse(oneDoc),
+                    'jsonTable', 'table table-bordered table-striped', 'Download');
                 $('#myTable').html(jsonHtmlTable);
 
             } else {

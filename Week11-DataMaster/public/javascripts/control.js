@@ -3,7 +3,9 @@
  */
 
 //var myModule = angular.module('myModule', ['ngRoute']);
-define(['Route', 'nameController', 'queryController', 'passportController'], function(Route, nameController, queryController, passportController) {
+define(['Route', 'nameController', 'queryController',
+    'passportController'
+], function(Route, nameController, queryController, passportController) {
     'use strict';
 
     function findRoutes($routeProvider) {
