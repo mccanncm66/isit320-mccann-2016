@@ -66,7 +66,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     queryController.insertNpcsBulk = function($q) {
         //'use strict';
-        return runQuery('/insertBulk?fileName=Npcs.json', $q);
+        return runQuery('/insertBulk?fileName=/home/bcuser/Git/isit320-mccann-2016/Week11-DataMaster/Npcs.json', $q);
     };
 
     queryController.insertStatesBulk = function($q) {
@@ -76,7 +76,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     queryController.insertNpcsOneDoc = function($q) {
         //'use strict';
-        return runQuery('/insertFile?fileName=Npcs.json&id=oneDoc', $q);
+        return runQuery('/insertFile?fileName=/home/bcuser/Git/isit320-mccann-2016/Week11-DataMaster/Npcs.json&id=oneDoc', $q);
     };
 
     queryController.design = function($q) {
