@@ -10,7 +10,7 @@ var fs = require('fs');
 var setServer = require('./set-server');
 var nano = require('nano')(setServer.serverUrl);
 
-var dbName = 'couch-final-mccann';
+var dbName = 'couch-views-calvert';
 
 var database = require('./CouchDatabase')(router, nano, dbName);
 var insert = require('./CouchInsert')(router, nano, dbName);

@@ -7,10 +7,6 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var google = require('./routes/google-auth');
-
-var session = require('express-session');
-var passport = require('passport');
 
 var app = express();
 
@@ -28,18 +24,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
-    secret: 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use('/', routes);
 app.use('/users', users);
-app.use('/auth', google);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -57,7 +43,6 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         'use strict';
         res.status(err.status || 500);
-        console.log(err.message);
         res.render('error', {
             message: err.message,
             error: err

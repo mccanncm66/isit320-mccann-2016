@@ -1,18 +1,5 @@
 define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHtml) {
     'use strict';
-    var currentIndex = 0;
-    var currentDoc = null;
-
-    var displayEditControls = function(doc, index) {
-        'use strict';
-        var editControls = document.getElementById('editControls');
-        if (index >= 0 && index < doc.length) {
-            editControls.style.display = 'block';
-            $('#npcName').val(doc[index].name);
-            $('#npcDescription').val(doc[index].id);
-            $('#npcQuestion').val(doc[index].value);
-        }
-    };
 
     function getResult(result) {
         try {
@@ -24,18 +11,8 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     }
 
-    function backDoc() {
-        console.log('backdoc');
-    }
-
-    function nextDoc() {
-        console.log('nextdoc');
-    }
-
     var queryController = function(query, result) {
         //'use strict';
-        $('#next').click(nextDoc);
-        $('#back').click(backDoc);
         utility.clearAll();
         if (query.requestFailed) {
             utility.failed(query.requestFailed);
@@ -45,7 +22,6 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
             var docs = $('#docs');
             docs.empty();
             console.log(result);
-            console.log(result.total_rows);
             if (result.ok) {
                 if (getResult(result) === 'Database created') {
                     docs.html('Database successfully created.');
@@ -72,12 +48,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
                     'jsonTable', 'table table-bordered table-striped', 'Download');
                 $('#myTable').html(jsonHtmlTable);
 
-            } else if (result.total_rows === 1) {
-                $scope.result = result;
-                currentDoc = $scope.result.rows[0].value;
-                displayEditControls(currentDoc, currentIndex);
-            }
-            else {
+            } else {
                 docs.html('ERROR!');
             }
         }
@@ -123,14 +94,13 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     queryController.viewBulk = function($q) { //*************************************************
         //'use strict';
-        return runQuery('/viewOneDoc?designDoc=states&view=docGamesDoc', $q);
+        return runQuery('/db-viewNpcsBulk?designDoc=states&view=docGamesDoc', $q);
     };
 
     queryController.viewOneDoc = function($q) { //************************************************8
         //'use strict';
         return runQuery('/db-viewNpcsOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
     };
-
 
     return queryController;
 });

@@ -82,7 +82,7 @@ define(['Route', 'nameController', 'queryController',
             resolve: {
                 result: queryController.viewBulkAngular
             }
-        }).when('/viewOneDoc', { //**************************************
+        }).when('XXXX/db-viewNpcsBulk', { //**************************************
             templateUrl: '/db-viewNpcsBulk',
             controller: queryController,
             resolve: {

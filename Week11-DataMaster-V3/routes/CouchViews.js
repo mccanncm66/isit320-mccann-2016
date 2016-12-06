@@ -69,7 +69,7 @@ function views(router, nano, dbName) {
         });
     });
 
-    router.get('/viewOneDoc', function(request, response) {
+    router.get('/db-viewOneDoc', function(request, response) {
         console.log('View one doc called');
         var nanoDb = nano.db.use(dbName);
         nanoDb.view(request.query.designDoc, request.query.view, function(err, body) {

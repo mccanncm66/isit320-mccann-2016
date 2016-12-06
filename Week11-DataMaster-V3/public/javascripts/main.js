@@ -62,31 +62,7 @@ requirejs(['jquery'], function($) {
                 $('.databaseOptions ul li a').click(function(event) {
                     handleClicks(event);
                 });
-                $('#next').click(function() {
-                    nextDoc();
-                })
-                $('#back').click(function(){
-                    backDoc()();
-                })
             });
-
-            var nextDoc = function() {
-                'use strict';
-                console.log('next clicked');
-                if (currentIndex < currentDoc.length - 1) {
-                    ++currentIndex;
-                }
-                displayEditControls(currentDoc, currentIndex);
-            };
-
-            var backDoc = function() {
-                'use strict';
-                console.log('back clicked');
-                if (currentIndex > 0) {
-                    --currentIndex;
-                }
-                displayEditControls(currentDoc, currentIndex);
-            };
 
         });
     });
