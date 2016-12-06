@@ -4,8 +4,8 @@
 
 //var myModule = angular.module('myModule', ['ngRoute']);
 define(['Route', 'nameController', 'queryController',
-    'passportController', 'buttonController'
-], function(Route, nameController, queryController, passportController, buttonController) {
+    'passportController'
+], function(Route, nameController, queryController, passportController) {
     'use strict';
 
     function findRoutes($routeProvider) {
@@ -84,15 +84,15 @@ define(['Route', 'nameController', 'queryController',
             }
         }).when('/viewOneDoc', { //**************************************
             templateUrl: '/db-viewNpcsBulk',
-            controller: buttonController,
+            controller: queryController,
             resolve: {
-                result: buttonController.viewBulk
+                result: queryController.viewBulk
             }
         }).when('XXXX/db-viewNpcsOneDoc', { //******************************************
             templateUrl: '/db-viewNpcsOneDoc',
-            controller: buttonController,
+            controller: queryController,
             resolve: {
-                result: buttonController.viewOneDoc
+                result: queryController.viewOneDoc
             }
         }).when('/passport-status', {
             templateUrl: '/passport-status',
