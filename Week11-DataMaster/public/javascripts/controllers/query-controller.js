@@ -1,18 +1,40 @@
 define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHtml) {
     'use strict';
+    var currentIndex = 0;
+    var currentDoc = null;
+
+    var displayEditControls = function(doc, index) {
+        var editControls = document.getElementById('editControls');
+        if (index >= 0 && index < doc.length) {
+            editControls.style.display = 'block';
+            $('#npcName').val(doc[index].name);
+            $('#npcDescription').val(doc[index].id);
+            $('#npcQuestion').val(doc[index].value);
+        }
+    };
 
     function getResult(result) {
         try {
             var output = result.data[0].result;
             return output;
-        } catch(e){
+        } catch (e) {
             //Do nothing
         }
 
     }
 
+    function backDoc() {
+        console.log('backdoc');
+    }
+
+    function nextDoc() {
+        console.log('nextdoc');
+    }
+
     var queryController = function(query, result) {
         //'use strict';
+        $('#next').click(nextDoc);
+        $('#back').click(backDoc);
         utility.clearAll();
         if (query.requestFailed) {
             utility.failed(query.requestFailed);
@@ -22,8 +44,9 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
             var docs = $('#docs');
             docs.empty();
             console.log(result);
+            console.log(result.total_rows);
             if (result.ok) {
-                if(getResult(result) === 'Database created') {
+                if (getResult(result) === 'Database created') {
                     docs.html('Database successfully created.');
                 } else if (getResult(result) === 'Database deleted') {
                     docs.html('Database successfully deleted.');
@@ -44,9 +67,14 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
                 console.log(result);
                 $scope.html = result._id;
                 var oneDoc = JSON.stringify(result.docs, null, 4);
-                var jsonHtmlTable = jsonToHtml(JSON.parse(oneDoc), 'jsonTable', 'table table-bordered table-striped', 'Download');
+                var jsonHtmlTable = jsonToHtml(JSON.parse(oneDoc),
+                    'jsonTable', 'table table-bordered table-striped', 'Download');
                 $('#myTable').html(jsonHtmlTable);
 
+            } else if (result.total_rows === 1) {
+                $scope.result = result;
+                currentDoc = $scope.result.rows[0].value;
+                displayEditControls(currentDoc, currentIndex);
             } else {
                 docs.html('ERROR!');
             }
@@ -66,7 +94,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     queryController.insertNpcsBulk = function($q) {
         //'use strict';
-        return runQuery('/insertBulk?fileName=/home/bcuser/Git/isit320-mccann-2016/Week11-DataMaster/Npcs.json', $q);
+        return runQuery('/insertBulk?fileName=Npcs.json', $q);
     };
 
     queryController.insertStatesBulk = function($q) {
@@ -76,7 +104,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     queryController.insertNpcsOneDoc = function($q) {
         //'use strict';
-        return runQuery('/insertFile?fileName=/home/bcuser/Git/isit320-mccann-2016/Week11-DataMaster/Npcs.json&id=oneDoc', $q);
+        return runQuery('/insertFile?fileName=Npcs.json&id=oneDoc', $q);
     };
 
     queryController.design = function($q) {
@@ -93,7 +121,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     queryController.viewBulk = function($q) { //*************************************************
         //'use strict';
-        return runQuery('/db-viewNpcsBulk?designDoc=states&view=docGamesDoc', $q);
+        return runQuery('/viewOneDoc?designDoc=states&view=docGamesDoc', $q);
     };
 
     queryController.viewOneDoc = function($q) { //************************************************8

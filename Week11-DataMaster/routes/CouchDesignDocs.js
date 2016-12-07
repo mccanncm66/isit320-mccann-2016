@@ -78,39 +78,47 @@ function designDocs(router, nano, dbName) {
         }
     };
 
-    /*
-     var viewStatesDoc = function(doc) {
-     if (doc._id === 'statesDoc') {
-     var data = [];
-     doc.docs.forEach(function(state) {
-     emit({
-     'name' : state.name,
-     'capital' : state.capital
-     }, 1);
-     });
-     emit(doc.docs[0].abbreviation, data);
-     }
-     }
+    var elfSessions = function(doc) {
+        console.log('**********************************' + doc.type);
+        console.log('**********************************' + doc.collectionName);
+        if (doc.type === 'connect-session' || doc.collectionName === 'sessions') {
+            emit(doc._id, doc);
+        }
+    };
 
-     var docStatesHtml = function(doc) {
-     start({
-     'headers' : {
-     'Content-Type' : 'text/html'
-     }
-     });
-     send('<html><body><table>');
-     send('<tr><th>ID</th><th>Key</th><th>Value</th></tr>')
-     while (row = viewStatesDoc()) {
-     send(''.concat('<tr>', '<td>' + toJSON(row.name) + '</td>', '<td>'
-     + toJSON(row.capital) + '</td>', '<td>' + toJSON(row.value)
-     + '</td>', '</tr>'));
-     }
-     send('</table></body></html>');
+    var elfSessionStore = function(doc) {
+        if (doc.collectionName === 'sessions' && doc.expires) {
+            emit(doc._id, doc);
+        }
+    };
 
-     }*/
+    var elfSessionExpires = function(doc) {
+        if (doc.collectionName === 'sessions' && doc.expires) {
+            emit(doc.expires);
+        }
+    };
 
     function createDesignDocument(designDocument, designName, response) {
         var nanoDb = nano.db.use(dbName);
+        nanoDb.insert(designDocument, designName, function(error, body) {
+            if (!error) {
+                var result = {
+                    'ok': true,
+                    data: body
+                };
+                console.log(result);
+                response.status(200).send(result);
+            } else {
+                console.log('error: ' + error);
+                response.send({
+                    'Result': 'The document might already exist. ' + error
+                });
+            }
+        });
+    }
+
+    function createElfDesignDocument(designDocument, designName, response) {
+        var nanoDb = nano.db.use('couch-session-mccann');
         nanoDb.insert(designDocument, designName, function(error, body) {
             if (!error) {
                 var result = {
@@ -166,6 +174,26 @@ function designDocs(router, nano, dbName) {
         createDesignDocument(designDocument, designName, response);
     });
 
+    router.get('/sessionDesignDoc', function(request, response) {
+        console.log('Design Doc Called');
+
+        var designName = '_design/elf-session';
+        var designDocument = {
+            'views': {
+                'elfSessions': {
+                    'map': elfSessions
+                },
+                'elfSessionStore': {
+                    'map': elfSessionStore
+                },
+                'elfSessionExpires': {
+                    'map': elfSessionExpires
+                }
+            }
+        };
+
+        createElfDesignDocument(designDocument, designName, response);
+    });
 }
 
 module.exports = designDocs;
