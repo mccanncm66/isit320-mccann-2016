@@ -16,7 +16,7 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     }
-    res.redirect('/login');
+    res.redirect('/');
 }
 
 router.get('/account', ensureAuthenticated, function(request, response) {
@@ -53,7 +53,7 @@ router.get('/google',
 //router.get('/auth/google/callback',
 router.get('/google/callback',
     passport.authenticate('google', {
-        failureRedirect: '/login'
+        failureRedirect: '/'
     }),
     function(req, res) {
         'use strict';
