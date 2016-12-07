@@ -86,7 +86,7 @@ function views(router, nano, dbName) {
 
     router.get('/viewSessions', function(request, response) {
         console.log(request.body);
-        var nanoDb = nano.db.use(dbName);
+        var nanoDb = nano.db.use('couch-session-mccann');
         nanoDb.view(request.query.designDoc, request.query.view, function(err, body) {
             if (!err) {
                 console.log(body.session);

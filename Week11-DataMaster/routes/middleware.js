@@ -6,6 +6,7 @@ var uuid = require('uuid');
 
 var FileStore = require('session-file-store')(session);
 var ConnectCouchDB = require('connect-couchdb')(session);
+//var passport = require('passport');
 var sessionstore = require('sessionstore');
 var setServer = require('./set-server');
 var setDB = require('./set-db');
@@ -18,8 +19,8 @@ var parseurl = require('parseurl');
 router.use(function(request, response, next) {
     'use strict';
     console.log('Sample middleware with useful output');
-    console.log('request cookies', request.cookies);
-    console.log('request secret', request.secret);
+    console.log('COOKIES', request.cookies);
+    console.log('SECRET', request.secret);
     // Uncomment the following line for one run, perhaps.
     // It is too verbose to use everytime
     // console.log(Object.getOwnPropertyNames(request));
@@ -36,7 +37,7 @@ var sessionStore = sessionstore.createSessionStore({
     type: 'couchdb',
     host: '168.156.47.122', // optional
     port: 5984, // optional
-    dbName: 'couch-final-mccann', // optional
+    dbName: 'couch-session-mccann', // optional
     collectionName: 'sessions', // optional
     timeout: 10000 // optional
 }, function(data) {
@@ -44,7 +45,7 @@ var sessionStore = sessionstore.createSessionStore({
     console.log('sessionStore callback', data);
 });
 
-var couchStore = new ConnectCouchDB({
+/*var couchStore = new ConnectCouchDB({
     // Name of the database you would like to use for sessions.
     name: 'couch-session-mccann',
 
@@ -67,12 +68,12 @@ var couchStore = new ConnectCouchDB({
     // Optional. How many time between two identical session store
     // Defaults to 60000 (1 minute)
     setThrottle: 60000
-});
+});*/
 
 router.use(session({
     genid: function(req) {
         'use strict';
-        console.log('id generated');
+        console.log('id generated------------------------------------------------------');
         return uuid.v4(); // use UUIDs for session IDs
     },
     key: 'app.sess',

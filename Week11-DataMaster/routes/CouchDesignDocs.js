@@ -117,6 +117,25 @@ function designDocs(router, nano, dbName) {
         });
     }
 
+    function createElfDesignDocument(designDocument, designName, response) {
+        var nanoDb = nano.db.use('couch-session-mccann');
+        nanoDb.insert(designDocument, designName, function(error, body) {
+            if (!error) {
+                var result = {
+                    'ok': true,
+                    data: body
+                };
+                console.log(result);
+                response.status(200).send(result);
+            } else {
+                console.log('error: ' + error);
+                response.send({
+                    'Result': 'The document might already exist. ' + error
+                });
+            }
+        });
+    }
+
 
 
     router.get('/designDoc', function(request, response) {
@@ -175,7 +194,7 @@ function designDocs(router, nano, dbName) {
             }
         };
 
-        createDesignDocument(designDocument, designName, response);
+        createElfDesignDocument(designDocument, designName, response);
     });
 
 }

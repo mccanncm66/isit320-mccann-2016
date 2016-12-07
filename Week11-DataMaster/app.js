@@ -6,10 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
-var session = require('express-session');
+/*var session = require('express-session');
 var uuid = require('uuid');
 
-var FileStore = require('session-file-store')(session);
+var FileStore = require('session-file-store')(session);*/
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -24,7 +24,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/favicon.png'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -33,15 +33,15 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(session({
+/*app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
-}));
+}));*/
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(request, response, next) {
+/*app.use(function(request, response, next) {
     'use strict';
     console.log('Sample middleware with useful output');
     console.log('request cookies', request.cookies);
@@ -50,7 +50,7 @@ app.use(function(request, response, next) {
     // It is too verbose to use everytime
     // console.log(Object.getOwnPropertyNames(request));
     next();
-});
+});*/
 
 app.use(middleware);
 app.use('/', routes);
