@@ -6,8 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 
-/*var session = require('express-session');
-var uuid = require('uuid');
+var session = require('express-session');
+/*var uuid = require('uuid');
 
 var FileStore = require('session-file-store')(session);*/
 
@@ -33,11 +33,11 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-/*app.use(session({
+app.use(session({
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
-}));*/
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
