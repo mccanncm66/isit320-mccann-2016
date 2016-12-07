@@ -34,7 +34,7 @@ router.use(function(request, response, next) {
 
 var sessionStore = sessionstore.createSessionStore({
     type: 'couchdb',
-    host: '168.156.47.122', // optional
+    host: '127.0.0.1', // optional
     port: 5984, // optional
     dbName: 'couch-session-mccann', // optional
     collectionName: 'sessions', // optional
