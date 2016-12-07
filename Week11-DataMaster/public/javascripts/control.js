@@ -4,8 +4,9 @@
 
 //var myModule = angular.module('myModule', ['ngRoute']);
 define(['Route', 'nameController', 'queryController',
-    'passportController', 'buttonController'
-], function(Route, nameController, queryController, passportController, buttonController) {
+    'passportController', 'buttonController', 'basicsController'
+], function(Route, nameController, queryController,
+            passportController, buttonController, basicsController) {
     'use strict';
 
     function findRoutes($routeProvider) {
@@ -97,6 +98,9 @@ define(['Route', 'nameController', 'queryController',
         }).when('/passport-status', {
             templateUrl: '/passport-status',
             controller: passportController
+        }).when('/basics', {
+            templateUrl: '/basics',
+            controller: basicsController
         }).otherwise({
             redirectTo: '/'
         });

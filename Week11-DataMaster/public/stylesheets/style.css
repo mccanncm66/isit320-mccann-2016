@@ -10,3 +10,15 @@ a {
 p {
 	width: 800px;
 }
+
+div {
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+}
+
+pre {
+    font-size: large;
+}

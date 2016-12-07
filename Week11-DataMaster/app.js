@@ -4,13 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+
+var session = require('express-session');
+var uuid = require('uuid');
+
+var FileStore = require('session-file-store')(session);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var middleware = require('./routes/middleware');
+var views = require('./routes/views');
 var google = require('./routes/google-auth');
-
-var session = require('express-session');
-var passport = require('passport');
 
 var app = express();
 
@@ -33,13 +38,25 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(function(request, response, next) {
+    'use strict';
+    console.log('Sample middleware with useful output');
+    console.log('request cookies', request.cookies);
+    console.log('request secret', request.secret);
+    // Uncomment the following line for one run, perhaps.
+    // It is too verbose to use everytime
+    // console.log(Object.getOwnPropertyNames(request));
+    next();
+});
+
+app.use(middleware);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', google);
+app.use('/views', views);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

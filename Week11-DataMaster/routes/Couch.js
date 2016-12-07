@@ -8,16 +8,17 @@ var router = express.Router();
 var fs = require('fs');
 
 var setServer = require('./set-server');
-var nano = require('nano')(setServer.serverUrl);
+var setDb = require('./set-db');
+var nano = require('nano')(setServer.serverUrls.dataServer);
 
-var dbName = 'couch-final-mccann';
+var dbName = setDb.databaseName;
 
 var database = require('./CouchDatabase')(router, nano, dbName);
 var insert = require('./CouchInsert')(router, nano, dbName);
 var views = require('./CouchViews')(router, nano, dbName);
 var designDocs = require('./CouchDesignDocs')(router, nano, dbName);
 var attach = require('./CouchAttach')(router, nano, dbName);
-var couchBulk = require('./CouchBulk')(router, dbName, setServer.serverUrl);
+var couchBulk = require('./CouchBulk')(router, dbName, setServer.serverUrls.dataServer);
 
 router.get('/databaseName', function(request, response) {
     'use strict';

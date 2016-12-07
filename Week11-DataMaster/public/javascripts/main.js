@@ -18,6 +18,7 @@ requirejs.config({
         'queryController': '/javascripts/controllers/query-controller',
         'passportController': '/javascripts/controllers/passport-controller',
         'buttonController': '/javascripts/controllers/button-controller',
+        'basicsController': '/javascripts/controllers/basics-controller',
         'jsonToHtml': '/components/elf-json-to-table/json-to-table',
         'Route': '/javascripts/route-provider/route',
         'runQuery': '/javascripts/route-provider/run-query',
@@ -63,31 +64,7 @@ requirejs(['jquery'], function($) {
                 $('.databaseOptions ul li a').click(function(event) {
                     handleClicks(event);
                 });
-                $('#next').click(function() {
-                    nextDoc();
-                })
-                $('#back').click(function(){
-                    backDoc()();
-                })
             });
-
-            var nextDoc = function() {
-                'use strict';
-                console.log('next clicked');
-                if (currentIndex < currentDoc.length - 1) {
-                    ++currentIndex;
-                }
-                displayEditControls(currentDoc, currentIndex);
-            };
-
-            var backDoc = function() {
-                'use strict';
-                console.log('back clicked');
-                if (currentIndex > 0) {
-                    --currentIndex;
-                }
-                displayEditControls(currentDoc, currentIndex);
-            };
 
         });
     });

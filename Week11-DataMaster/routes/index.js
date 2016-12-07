@@ -2,11 +2,34 @@ var router = require('./Couch');
 var express = require('express');
 var passport = require('passport');
 
+var routeParamMiddleware = function(request, response, next) {
+    'use strict';
+    console.log('My middleware called by this route:', request.originalUrl);
+    next();
+};
+
+var pageReport = function(request, response) {
+    'use strict';
+    var previousPage = '';
+    if (request.session.lastPage) {
+        previousPage = request.session.lastPage;
+    }
+
+    request.session.lastPage = request.url;
+    var welcome = 'Welcome to ' + request.url;
+    console.log('Hello', welcome);
+    response.send({
+        currentPage: request.url,
+        previousPage: previousPage,
+        'session': request.session
+    });
+};
+
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', routeParamMiddleware, function(req, res) {
     'use strict';
     res.render('index', {
-        title: 'Couch Views II'
+        title: 'Isit Final'
     });
 });
 
@@ -24,27 +47,6 @@ router.get('/user-form', function(request, response) {
     var result = request.query;
     console.log(result);
     response.send(result);
-});
-
-
-
-/* GET home page. */
-router.get('/', function(request, response, next) {
-    'use strict';
-    console.log('Index called');
-    response.render('index', {
-        title: 'Passport Google'
-    });
-});
-
-passport.serializeUser(function(user, done) {
-    'use strict';
-    done(null, user);
-});
-
-passport.deserializeUser(function(obj, done) {
-    'use strict';
-    done(null, obj);
 });
 
 router.get('/login', function(req, res) {
@@ -68,6 +70,32 @@ router.get('/status', function(request, response) {
         result: 'Success',
         authenticated: request.isAuthenticated()
     });
+});
+
+
+router.get('/page01', function(request, response) {
+    'use strict';
+    pageReport(request, response);
+});
+
+router.get('/page02', function(request, response) {
+    'use strict';
+    pageReport(request, response);
+});
+
+router.get('/page03', function(request, response) {
+    'use strict';
+    pageReport(request, response);
+});
+
+passport.serializeUser(function(user, done) {
+    'use strict';
+    done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+    'use strict';
+    done(null, obj);
 });
 
 router.get('/:id', function(request, response) {

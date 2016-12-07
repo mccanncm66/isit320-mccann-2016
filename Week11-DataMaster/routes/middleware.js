@@ -6,9 +6,13 @@ var uuid = require('uuid');
 
 var FileStore = require('session-file-store')(session);
 var ConnectCouchDB = require('connect-couchdb')(session);
+var sessionstore = require('sessionstore');
+var setServer = require('./set-server');
+var setDB = require('./set-db');
 
 // LOAD PARSEURL:
 var parseurl = require('parseurl');
+
 // WHAT OTHER PACKAGES NEED TO BE LOADED BEFORE THIS CODE WILL WORK?
 
 router.use(function(request, response, next) {
@@ -26,9 +30,19 @@ router.use(function(request, response, next) {
  * * Couch Session
  **********************************/
 //Add couchdb server IP address
-servers = ['168.156.47.122',
-    '192.168.0.11'
-];
+
+
+var sessionStore = sessionstore.createSessionStore({
+    type: 'couchdb',
+    host: '168.156.47.122', // optional
+    port: 5984, // optional
+    dbName: 'couch-final-mccann', // optional
+    collectionName: 'sessions', // optional
+    timeout: 10000 // optional
+}, function(data) {
+    'use strict';
+    console.log('sessionStore callback', data);
+});
 
 var couchStore = new ConnectCouchDB({
     // Name of the database you would like to use for sessions.
@@ -39,7 +53,7 @@ var couchStore = new ConnectCouchDB({
     //username: 'username',
     //password: 'password',
 
-    host: servers[0],
+    host: '168.156.47.122',
 
     // Optional. How often expired sessions should be cleaned up.
     // Defaults to 600000 (10 minutes).
@@ -55,27 +69,17 @@ var couchStore = new ConnectCouchDB({
     setThrottle: 60000
 });
 
-/*******END COUCH SESSION******/
-
-/*router.use(session({
-    genid: function(req) {
-        'use strict';
-        return uuid.v4(); // use UUIDs for session IDs
-    },
-    secret: process.env.SESSION_SECRET || 'keyboard cat',
-    resave: true,
-    saveUninitialized: true
-}));*/
-
 router.use(session({
     genid: function(req) {
         'use strict';
+        console.log('id generated');
         return uuid.v4(); // use UUIDs for session IDs
     },
+    key: 'app.sess',
     secret: process.env.SESSION_SECRET || 'keyboard cat',
     resave: true,
     saveUninitialized: true,
-    store: couchStore
+    store: sessionStore
 }));
 
 router.use(function(request, response, next) {
