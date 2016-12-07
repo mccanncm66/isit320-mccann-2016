@@ -32,6 +32,7 @@ router.use(function(request, response, next) {
  **********************************/
 //Add couchdb server IP address
 
+
 var sessionStore = sessionstore.createSessionStore({
     type: 'couchdb',
     host: '168.156.47.122', // optional

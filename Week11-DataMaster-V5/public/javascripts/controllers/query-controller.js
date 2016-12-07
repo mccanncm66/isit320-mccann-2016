@@ -4,6 +4,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
     var currentDoc = null;
 
     var displayEditControls = function(doc, index) {
+        'use strict';
         var editControls = document.getElementById('editControls');
         if (index >= 0 && index < doc.length) {
             editControls.style.display = 'block';
@@ -75,7 +76,8 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
                 $scope.result = result;
                 currentDoc = $scope.result.rows[0].value;
                 displayEditControls(currentDoc, currentIndex);
-            } else {
+            }
+            else {
                 docs.html('ERROR!');
             }
         }
@@ -128,6 +130,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
         //'use strict';
         return runQuery('/db-viewNpcsOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
     };
+
 
     return queryController;
 });

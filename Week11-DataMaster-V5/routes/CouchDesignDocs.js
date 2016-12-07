@@ -136,6 +136,8 @@ function designDocs(router, nano, dbName) {
         });
     }
 
+
+
     router.get('/designDoc', function(request, response) {
 
         console.log('Design Doc Called');
@@ -194,6 +196,7 @@ function designDocs(router, nano, dbName) {
 
         createElfDesignDocument(designDocument, designName, response);
     });
+
 }
 
 module.exports = designDocs;

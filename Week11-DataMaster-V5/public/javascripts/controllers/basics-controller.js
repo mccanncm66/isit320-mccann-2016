@@ -1,6 +1,7 @@
 define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHtml) {
     'use strict';
 
+
     var basicsController = function(query, result) {
         //'use strict';
         function showPage(pageRoute) {
@@ -48,14 +49,15 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
         $('#dataSessionExpires').click(function() {
             showPage('/viewSessions?designDoc=elf-session&view=elfSessionExpires');
         });
+        $('#fileStore').click(function() {
+            showPage('/viewSessions?designDoc=elf-session&view=elfSessionStore');
+        });
         $('#authLoginStatus').click(function() {
             showPage('/status');
         });
-        $('#request').click(function() {
-            showPage('views/request');
-        });
         //docs.html('YOUR CODE HERE PUTS INFO IN docs');
     };
+
 
     basicsController.viewBulk = function($q) { //*************************************************
         //'use strict';
@@ -66,6 +68,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
         //'use strict';
         return runQuery('/db-viewNpcsOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
     };
+
 
     return basicsController;
 });

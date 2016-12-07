@@ -6,7 +6,7 @@
 define(['Route', 'nameController', 'queryController',
     'passportController', 'buttonController', 'basicsController'
 ], function(Route, nameController, queryController,
-    passportController, buttonController, basicsController) {
+            passportController, buttonController, basicsController) {
     'use strict';
 
     function findRoutes($routeProvider) {

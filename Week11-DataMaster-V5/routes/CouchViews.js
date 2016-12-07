@@ -83,6 +83,7 @@ function views(router, nano, dbName) {
         });
     });
 
+
     router.get('/viewSessions', function(request, response) {
         console.log(request.body);
         var nanoDb = nano.db.use('couch-session-mccann');

@@ -4,6 +4,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
     var currentDoc = null;
 
     var displayEditControls = function(doc, index) {
+        'use strict';
         var editControls = document.getElementById('editControls');
         if (index >= 0 && index < doc.length) {
             editControls.style.display = 'block';
@@ -33,7 +34,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     function nextDoc() {
         console.log('nextdoc');
-        if (currentIndex < currentDoc.length - 1) {
+        if(currentIndex < currentDoc.length - 1) {
             currentIndex++;
             displayEditControls(currentDoc, currentIndex);
         }
@@ -58,12 +59,14 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
                 $scope.result = result;
                 currentDoc = $scope.result.rows[0].value;
                 displayEditControls(currentDoc, currentIndex);
-            } else {
+            }
+            else {
                 docs.html('ERROR!');
             }
         }
         //docs.html('YOUR CODE HERE PUTS INFO IN docs');
     };
+
 
     buttonController.viewBulk = function($q) { //*************************************************
         //'use strict';
@@ -74,6 +77,7 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
         //'use strict';
         return runQuery('/db-viewNpcsOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
     };
+
 
     return buttonController;
 });
