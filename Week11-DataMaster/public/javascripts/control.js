@@ -89,7 +89,7 @@ define(['Route', 'nameController', 'queryController',
             resolve: {
                 result: buttonController.viewBulk
             }
-        }).when('XXXX/db-viewNpcsOneDoc', { //******************************************
+        }).when('/db-viewNpcsOneDoc', { //******************************************
             templateUrl: '/db-viewNpcsOneDoc',
             controller: buttonController,
             resolve: {

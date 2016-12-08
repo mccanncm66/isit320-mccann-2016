@@ -22,3 +22,10 @@ button {
 pre {
     font-size: large;
 }
+
+#editControls div span {
+    text-align: right;
+    margin-right:5px;
+    display:inline-block;
+    width:67px;
+}

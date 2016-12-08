@@ -2,14 +2,21 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
     'use strict';
     var currentIndex = 0;
     var currentDoc = null;
+    var isId = true;
 
     var displayEditControls = function(doc, index) {
-        var editControls = document.getElementById('editControls');
+        //var editControls = document.getElementById('editControls');
         if (index >= 0 && index < doc.length) {
-            editControls.style.display = 'block';
-            $('#npcName').val(doc[index].name);
-            $('#npcDescription').val(doc[index].id);
-            $('#npcQuestion').val(doc[index].value);
+            //editControls.style.display = 'block';
+            if(isId) {
+                $('#npcName').val(doc[index].name);
+                $('#npcDescription').val(doc[index].id);
+                $('#npcQuestion').val(doc[index].value);
+            } else {
+                $('#npcName').val(doc[index].id);
+                $('#npcDescription').val(doc[index].name);
+                $('#npcQuestion').val(doc[index].question);
+            }
         }
     };
 
@@ -67,12 +74,14 @@ define(['runQuery', 'utils', 'jsonToHtml'], function(runQuery, utility, jsonToHt
 
     buttonController.viewBulk = function($q) { //*************************************************
         //'use strict';
+        isId = true;
         return runQuery('/viewOneDoc?designDoc=states&view=docGamesDoc', $q);
     };
 
     buttonController.viewOneDoc = function($q) { //************************************************8
         //'use strict';
-        return runQuery('/db-viewNpcsOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
+        isId = false;
+        return runQuery('/viewNpcsOneDoc?designDoc=states&view=docGameQuestionDoc', $q);
     };
 
     return buttonController;
