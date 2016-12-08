@@ -1,0 +1,26 @@
+extends layout
+include mixin-nav
+
+block append content
+
+    .header
+        +nav("Prog270", "navigationbar", "navbar-default navbar-fixed-top")
+            +nav_item( "/home", "home", "active" ) Home
+            +nav_item( "passport-status", "passport-status" ) Passport Status
+            +nav_item( "basics", "basics" ) Session Basics
+            +nav_item_dropdown( "#" )( label="Database Status" )
+                +nav_item( "db-names", "db-names" ) Database Names
+                +nav_item( "db-create", "db-create" ) Create Database
+                +nav_item( "db-delete", "db-delete" ) Delete Database
+            +nav_item_dropdown( "#")( label="Insert Data" )
+                +nav_item( "db-insert-bulk", "db-insert-bulk") Insert Bulk Npc
+                +nav_item( "db-insert-one-doc", "db-insert-one-doc") Insert One Npc Doc
+                +nav_item( "db-insert-design", "db-insert-design" ) Insert Design Doc
+
+    .container
+        h1 #{pageTitle}
+        p You are in the <strong>#{programTitle}</strong> program.
+        div#main-content
+            #elfContent
+
+        pre#debug

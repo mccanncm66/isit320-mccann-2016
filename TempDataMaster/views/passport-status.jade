@@ -1,0 +1,27 @@
+block content
+    h1= title
+    p Welcome to #{title}
+
+    .panel.panel-default
+        .panel-heading Google
+        .panel-body
+            ul.list-group
+                li.list-group-item
+                    a(href='/auth/google') Log In Google
+                li.list-group-item
+                    a(href='/auth/account') Google Account
+                li.list-group-item
+                    a(href='/status') Google Status
+
+    .panel.panel-default
+        .panel-heading Log Out All Accounts
+        .panel-body
+            ul.list-group
+                li.list-group-item
+                    a(href='/logout') Logout
+
+
+div
+    pre#report
+div
+    pre#debug
