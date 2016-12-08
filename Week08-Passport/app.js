@@ -4,19 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passport = require('passport');
-
-var session = require('express-session');
-/*var uuid = require('uuid');
-
-var FileStore = require('session-file-store')(session);*/
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var middleware = require('./routes/middleware');
-var views = require('./routes/views');
 var google = require('./routes/google-auth');
 var twitter = require('./routes/login-twitter');
+
+var session = require('express-session');
+var passport = require('passport');
 
 var app = express();
 
@@ -25,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-app.use(favicon(__dirname + '/public/favicon.png'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -33,7 +28,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(session({
     secret: 'keyboard cat',
     resave: true,
@@ -42,23 +36,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-/*app.use(function(request, response, next) {
-    'use strict';
-    console.log('Sample middleware with useful output');
-    console.log('request cookies', request.cookies);
-    console.log('request secret', request.secret);
-    // Uncomment the following line for one run, perhaps.
-    // It is too verbose to use everytime
-    // console.log(Object.getOwnPropertyNames(request));
-    next();
-});*/
-
-app.use(middleware);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/auth', google);
 app.use('/twitter', twitter);
-app.use('/views', views);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,7 +57,7 @@ if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         'use strict';
         res.status(err.status || 500);
-        console.log(err.message);
+        console.log(err);
         res.render('error', {
             message: err.message,
             error: err
