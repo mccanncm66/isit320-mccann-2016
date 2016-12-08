@@ -1,0 +1,41 @@
+extends layout
+
+block content
+
+    div#blocker(style='display: -webkit-box;')
+        div#instructions(style='')
+            span(style='font-size:40px') Click to play
+            p (W, A, S, D = Move, SPACE = Jump, MOUSE = Look around)
+    div#win(style='display:none')
+        span(style='font-size:40px; color:red;') You found them all!
+        p(style='color:red') Thanks for playing. Press 'Esc' exit.
+     div#message
+            p
+                strong CameraX:
+                     span#cameraX Isit320_McCann
+            p
+                 strong CameraY:
+                     span#cameraY
+            p
+                 strong CameraZ:
+                     span#cameraZ
+            p
+                 strong MazeX:
+                    span#mazeX
+            p
+                 strong MazeY:
+                    span#mazeY
+            p
+                strong Living Npcs:
+                    span#living
+            p
+                strong Dead Npcs:
+                    span#dead
+            p
+                 strong Npc Found Name:
+                    span#npcName
+            p
+                strong Score:
+                    span#playerScore
+
+            ul#npcs

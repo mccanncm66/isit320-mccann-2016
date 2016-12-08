@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+    h1 Google Account
+    p Welcome to Google Account
+
+    div.title
+        p Basics
+    div#basicsInfo
+        p= 'Name: ' + user.displayName
+        p= 'Family Name: ' + user.name.familyName
+        p= 'Given Name: ' + user.name.givenName
+    p <br>
+    div.title
+        p Other
+    div#otherInfo
+        p= 'Gender: ' + user.gender
+        p= 'Provider: ' + user.provider
+        p= 'Tagline: ' + user._json.tagline
+    p <br>
+
+    img(src=user.photos[0].value)
+
+    button.btn.btn-primary(onclick="history.go(-1)") HOME

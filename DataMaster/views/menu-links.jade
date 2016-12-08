@@ -1,0 +1,30 @@
+block append content
+  h1 Week11-DataMaster
+  p 
+    | Welcome to Data Master. Click the options below, and if necessary
+    | scroll down to see the results.
+    #main-content
+        .databaseOptions
+            ul
+                li
+                    a(href="db-readOne") View All NPCs
+                li
+                    a(href="viewOneDoc") View NPC Value
+                li
+                    a(href="db-viewNpcsOneDoc") View NPC Question
+
+
+        .panel.panel-default
+            .panel-heading Main Content
+            .panel-body
+
+
+              #elfContent
+        .panel.panel-default
+            .panel-heading Doc
+            .panel-body
+              pre#doc
+        .panel.panel-default
+            .panel-heading Debug
+            .panel-body
+              pre#debug

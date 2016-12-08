@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+p {
+	width: 800px;
+}
+
+div {
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+}
+
+pre {
+    font-size: large;
+}
+
+#editControls div span {
+    text-align: right;
+    margin-right:5px;
+    display:inline-block;
+    width:67px;
+}

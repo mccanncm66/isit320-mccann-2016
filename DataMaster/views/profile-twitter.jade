@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+    h1 Twitter Account
+    p Welcome to Twitter Account
+
+    div.title
+        p Basics
+    div#twitterBasics
+        p= 'Id: ' + user._json.id
+        p= 'Name: ' + user._json.name
+        p= 'Screen Name: ' + user._json.screen_name
+        p= 'Location: ' + user._json.location
+        p= 'Description: ' + user._json.description
+
+        button.btn.btn-primary(onclick="history.go(-1)") HOME
